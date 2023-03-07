@@ -1,0 +1,12 @@
+#component-pet-render-options {
+    display: flex;
+    justify-content: space-around;
+
+    padding-block: 1rem;
+}
+
+#component-pet-render-options .render-option {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 0.5rem;
+}
