@@ -1,4 +1,5 @@
 #component-header {
+    background-color: var(--color-detail);
     height: 8vh;
 
     display: flex;

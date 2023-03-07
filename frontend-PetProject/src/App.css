@@ -1,0 +1,12 @@
+*, *::before, *::after {
+    --color-primary: #00bfb3;
+    --color-secondary: #ccc9e7;
+    --color-detail: #f6e27f;
+    --fontcolor-primary: #263d42;
+    --fontcolor-secondary: #2f0601;
+}
+
+#root {
+    background-color: var(--color-primary);
+    color: var(--fontcolor-primary);
+}
