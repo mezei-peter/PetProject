@@ -1,0 +1,16 @@
+#component-header {
+    height: 8vh;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+#component-header .material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48;
+
+  font-size: 1rem;
+}
