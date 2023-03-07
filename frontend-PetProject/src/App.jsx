@@ -4,6 +4,7 @@ import Header from './Components/Header/Header';
 import OperationBox from './Components/OperationBox/OperationBox';
 import PetRenderOptions from './Components/PetRenderOptions/PetRenderOptions';
 import PetTree from './Components/PetTree/PetTree';
+import Footer from './Components/Footer/Footer';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <OperationBox/>
       <PetRenderOptions/>
       <PetTree/>
+      <Footer/>
     </>
     
   );
