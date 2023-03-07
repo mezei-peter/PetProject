@@ -7,6 +7,5 @@
 }
 
 #root {
-    background-color: var(--color-primary);
     color: var(--fontcolor-primary);
 }
