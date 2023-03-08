@@ -8,4 +8,5 @@
 
 #root {
     color: var(--fontcolor-primary);
+    overflow: hidden;
 }
