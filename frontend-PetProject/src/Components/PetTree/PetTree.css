@@ -1,0 +1,108 @@
+#component-pet-tree {
+    position: absolute;
+    border: 2px solid black;
+    width: 300%;
+    overflow: auto;
+}
+
+#component-pet-tree .invisible {
+    visibility: hidden;
+}
+
+#component-pet-tree .inner-wrapper {
+    position: relative;
+}
+
+#component-pet-tree ul {
+    padding-top: 1em; 
+    position: relative;
+    
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+#component-pet-tree li {
+    float: left; 
+    text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 1em 0.25em 0 0.25em;
+    
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+#component-pet-tree li::before, #component-pet-tree li::after{
+    content: '';
+    position: absolute; top: 0; right: 50%;
+    border-top: 0.05em solid var(--fontcolor-secondary);
+    width: 50%; height: 1em;
+}
+#component-pet-tree li::after{
+    right: auto; 
+    left: 50%;
+    border-left: 1px solid var(--fontcolor-secondary);
+}
+
+#component-pet-tree li:only-child::after, #component-pet-tree li:only-child::before {
+    display: none;
+}
+
+#component-pet-tree li:only-child{ padding-top: 0;}
+
+#component-pet-tree li:first-child::before, #component-pet-tree li:last-child::after{
+    border: 0 none;
+}
+#component-pet-tree li:last-child::before{
+    border-right: 0.05em solid var(--fontcolor-secondary);
+    border-radius: 0 0.25em 0 0;
+    -webkit-border-radius: 0 5px 0 0;
+    -moz-border-radius: 0 0.05em 0 0;
+}
+#component-pet-tree li:first-child::after{
+    border-radius: 0.05em 0 0 0;
+    -webkit-border-radius: 0.05em 0 0 0;
+    -moz-border-radius: 0.05em 0 0 0;
+}
+#component-pet-tree ul ul::before{
+    content: '';
+    position: absolute; top: 0; left: 50%;
+    border-left: 0.05em solid var(--fontcolor-secondary);
+    width: 0; height: 1em;
+}
+#component-pet-tree li div {
+    width: 6.5em;
+    height: 6.5em;
+    border: 0.05em solid var(--fontcolor-secondary);
+    padding: 0.25em 1em;
+    text-decoration: none;
+    color: var(--fontcolor-secondary);
+    font-family: arial, verdana, tahoma;
+    font-size: 20px;
+    display: inline-block;
+    
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+#component-pet-tree li div:hover, #component-pet-tree li div:hover{
+    background: var(--color-primary); color: var(--fontcolor-primary); border: 1px solid var(--color-detail);
+}
+#component-pet-tree li div:hover+ul li div, 
+#component-pet-tree li div:hover+ul li::after, 
+#component-pet-tree li div:hover+ul li::before, 
+#component-pet-tree li div:hover+ul::before, 
+#component-pet-tree li div:hover+ul ul::before{
+    border-color:  var(--color-primary);
+}
+
+#component-pet-tree li div img {
+    height: 2em;
+    width: 2em;
+}
