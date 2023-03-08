@@ -73,6 +73,8 @@
     width: 0; height: 1em;
 }
 #component-pet-tree li div {
+    width: 6.5em;
+    height: 6.5em;
     border: 0.05em solid #ccc;
     padding: 0.25em 1em;
     text-decoration: none;
