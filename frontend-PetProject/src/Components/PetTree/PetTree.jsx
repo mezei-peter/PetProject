@@ -30,7 +30,7 @@ function PetTree() {
                 if (!data) {
                     return;
                 }
-                setRoot(data);
+                setRoot({...data, invisible: false});
                 setLoading(false);
                 setWentWrong(false);
             })

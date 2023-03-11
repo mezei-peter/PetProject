@@ -17,7 +17,7 @@ function PetNode({invisible, leftChild, rightChild, name, weight}) {
 
             <ul>
                 {leftChild ?
-                    <PetNode invisible={false} leftChild={leftChild.leftChild} rightChild={rightChild.rightChild}
+                    <PetNode invisible={false} leftChild={leftChild.leftChild} rightChild={leftChild.rightChild}
                              name={leftChild.name} weight={leftChild.weight}/> :
                     <PetNode invisible={true}/>}
                 {rightChild ?

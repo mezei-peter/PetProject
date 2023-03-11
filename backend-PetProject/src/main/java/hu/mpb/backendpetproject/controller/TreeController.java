@@ -15,9 +15,17 @@ public class TreeController {
         return new ResponseEntity<>(
                 new PetNodeDto(
                         "Root",
-                        50,
+                        30,
                         new PetNodeDto("Left", 20, null, null),
-                        new PetNodeDto("Right", 60, null, null)
+                        new PetNodeDto("Right", 60,
+                                new PetNodeDto(
+                                        "Right-Left", 40, null, null
+                                ),
+                                new PetNodeDto("Right-Right", 70,
+                                        null,
+                                        new PetNodeDto("Right-Right-Right", 80, null, null)
+                                )
+                        )
                 ),
                 HttpStatus.OK
         );
