@@ -1,5 +1,4 @@
-
-function PetNode({ children, invisible }) {
+function PetNode({invisible, leftChild, rightChild, name, weight}) {
     if (invisible) {
         return (
             <li>
@@ -11,19 +10,20 @@ function PetNode({ children, invisible }) {
     return (
         <li>
             <div>
-                <img src="https://cdn.pixabay.com/photo/2013/07/13/13/41/pig-161381_960_720.png" alt="animal portrait" />
-                <p>name</p>
-                <p>10kg</p>
+                <img src="https://cdn.pixabay.com/photo/2013/07/13/13/41/pig-161381_960_720.png" alt="animal portrait"/>
+                <p>{name}</p>
+                <p>{weight}kg</p>
             </div>
 
             <ul>
-                {children.map((child, index) => {
-                    if (!child) {
-                        return <PetNode key={index} invisible={true}/>;
-                    }
-
-                    return <PetNode key={index} invisible={false} children={child.children}/>
-                })}
+                {leftChild ?
+                    <PetNode invisible={false} leftChild={leftChild.leftChild} rightChild={rightChild.rightChild}
+                             name={leftChild.name} weight={leftChild.weight}/> :
+                    <PetNode invisible={true}/>}
+                {rightChild ?
+                    <PetNode invisible={false} leftChild={rightChild.leftChild} rightChild={rightChild.rightChild}
+                             name={rightChild.name} weight={rightChild.weight}/> :
+                    <PetNode invisible={true}/>}
             </ul>
         </li>
     );

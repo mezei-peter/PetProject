@@ -4,7 +4,7 @@ import PetNode from './PetNode';
 import {useEffect, useState} from "react";
 
 function PetTree() {
-    const [tree, setTree] = useState(null);
+    const [root, setRoot] = useState(null);
     const [wentWrong, setWentWrong] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -19,8 +19,7 @@ function PetTree() {
                 }
             })
             .then(data => {
-                console.log(data);
-                setTree(data);
+                setRoot(data);
                 setLoading(false);
                 setWentWrong(false);
             })
@@ -44,14 +43,8 @@ function PetTree() {
         <div id="component-pet-tree">
             <div className="inner-wrapper">
                 <ul>
-                    <PetNode children={[
-                        {
-                            children: [
-                                {children: [null, null]},
-                                {children: [null, null]}]
-                        },
-                        {children: [null, null]}
-                    ]} invisible={false}/>
+                    <PetNode invisible={!root} leftChild={root.leftChild} rightChild={root.rightChild} name={root.name}
+                             weight={root.weight}/>
                 </ul>
             </div>
         </div>
