@@ -4,7 +4,8 @@ import PetNode from './PetNode';
 import {useEffect, useState} from "react";
 
 function PetTree() {
-    const [root, setRoot] = useState(null);
+    const emptyRoot = {invisible: true, name: "", weight: -1, leftChild: null, rightChild: null};
+    const [root, setRoot] = useState(emptyRoot);
     const [wentWrong, setWentWrong] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -12,13 +13,23 @@ function PetTree() {
         fetch("/api/tree/test")
             .then(res => {
                 if (res.status !== 200) {
+                    if (res.status === 204) {
+                        setRoot(emptyRoot);
+                        setLoading(false);
+                        setWentWrong(false);
+                        return null;
+                    }
                     setLoading(false);
                     setWentWrong(true);
+                    return null;
                 } else {
                     return res.json();
                 }
             })
             .then(data => {
+                if (!data) {
+                    return;
+                }
                 setRoot(data);
                 setLoading(false);
                 setWentWrong(false);
@@ -43,7 +54,8 @@ function PetTree() {
         <div id="component-pet-tree">
             <div className="inner-wrapper">
                 <ul>
-                    <PetNode invisible={!root} leftChild={root.leftChild} rightChild={root.rightChild} name={root.name}
+                    <PetNode invisible={root.invisible} leftChild={root.leftChild} rightChild={root.rightChild}
+                             name={root.name}
                              weight={root.weight}/>
                 </ul>
             </div>
