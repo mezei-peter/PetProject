@@ -1,4 +1,4 @@
-package hu.mpb.backendpetproject.service;
+package hu.mpb.backendpetproject.service.pet;
 
 import hu.mpb.backendpetproject.controller.dto.PetNodeDto;
 

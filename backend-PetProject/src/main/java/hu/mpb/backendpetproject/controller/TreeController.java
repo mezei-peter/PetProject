@@ -1,7 +1,7 @@
 package hu.mpb.backendpetproject.controller;
 
 import hu.mpb.backendpetproject.controller.dto.PetNodeDto;
-import hu.mpb.backendpetproject.service.PetService;
+import hu.mpb.backendpetproject.service.pet.PetService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

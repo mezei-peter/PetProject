@@ -1,7 +1,7 @@
 package hu.mpb.backendpetproject.config;
 
-import hu.mpb.backendpetproject.service.DevPetService;
-import hu.mpb.backendpetproject.service.PetService;
+import hu.mpb.backendpetproject.service.pet.DevPetService;
+import hu.mpb.backendpetproject.service.pet.PetService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
