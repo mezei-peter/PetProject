@@ -12,4 +12,28 @@ public class PetNode {
         this.left = null;
         this.right = null;
     }
+
+    public void setLeft(PetNode left) {
+        this.left = left;
+    }
+
+    public void setRight(PetNode right) {
+        this.right = right;
+    }
+
+    public PetNode getLeft() {
+        return left;
+    }
+
+    public PetNode getRight() {
+        return right;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
