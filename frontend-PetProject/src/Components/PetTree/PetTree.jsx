@@ -3,9 +3,7 @@ import './PetTree.css';
 import PetNode from './PetNode';
 import {useEffect, useState} from "react";
 
-function PetTree() {
-    const emptyRoot = {invisible: true, name: "", weight: -1, leftChild: null, rightChild: null};
-    const [root, setRoot] = useState(emptyRoot);
+function PetTree({root, setRoot, emptyRoot}) {
     const [wentWrong, setWentWrong] = useState(false);
     const [loading, setLoading] = useState(true);
 
