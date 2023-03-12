@@ -24,4 +24,9 @@ public class DevPetService implements PetService {
     public PetNodeDto getPetNodeDto(UUID petNodeId) {
         return currentPetNodeDto;
     }
+
+    @Override
+    public PetNodeDto insertPet(UUID randomUUID, String petName, int petWeight) {
+        return currentPetNodeDto;
+    }
 }

@@ -4,9 +4,7 @@ import hu.mpb.backendpetproject.controller.dto.PetNodeDto;
 import hu.mpb.backendpetproject.service.pet.PetService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -26,5 +24,11 @@ public class TreeController {
                 HttpStatus.OK
         );
         /*return new ResponseEntity<>(HttpStatus.NO_CONTENT);*/
+    }
+
+    @PutMapping(value = "/test", produces = "application/json")
+    private ResponseEntity<PetNodeDto> putPetNode(@RequestBody String petName, @RequestBody int petWeight) {
+        PetNodeDto result = petService.insertPet(UUID.randomUUID(), petName, petWeight);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

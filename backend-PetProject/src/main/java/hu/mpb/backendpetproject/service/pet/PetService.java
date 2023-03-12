@@ -6,4 +6,6 @@ import java.util.UUID;
 
 public interface PetService {
     public PetNodeDto getPetNodeDto(UUID petNodeId);
+
+    PetNodeDto insertPet(UUID randomUUID, String petName, int petWeight);
 }
