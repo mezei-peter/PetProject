@@ -3,10 +3,12 @@ import {useEffect, useState} from "react";
 function AddForm({setTreeRoot}) {
     const [name, setName] = useState("");
     const [weight, setWeight] = useState("");
+    const [loading, setLoading] = useState(false);
     const handleSubmit = () => {
         if (!name || weight <= 0) {
             return;
         }
+        setLoading(true);
 
         fetch("/api/tree/test", {
             method: "PUT",
@@ -23,11 +25,16 @@ function AddForm({setTreeRoot}) {
                 setTreeRoot(data);
                 setName("");
                 setWeight("");
+                setLoading(false);
             })
             .catch(ex => {
                 console.error(ex);
             });
     };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <form id="ob-form" onSubmit={event => {
