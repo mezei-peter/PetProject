@@ -10,3 +10,7 @@
     color: var(--fontcolor-primary);
     overflow: hidden;
 }
+
+#root button {
+    cursor: pointer;
+}
