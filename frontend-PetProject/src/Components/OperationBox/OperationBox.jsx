@@ -1,6 +1,9 @@
 import './OperationBox.css';
+import AddForm from "./AddForm.jsx";
 
-function OperationBox() {
+function OperationBox({setTreeRoot}) {
+
+
     return(
         <div id="component-operation-box">
             <div className="operation-box">
@@ -12,14 +15,7 @@ function OperationBox() {
                 </nav>
                 <div id="ob-selected-option">
                     <button className="ob-side-arrow">&#60;</button>
-                    <form id="ob-form" onSubmit={event => {
-                        event.preventDefault();
-                    }}>
-                        <h2>Add pet</h2>
-                        <input type="text" name="ob-form-name" id="ob-form-name" placeholder="name"/>
-                        <input type="text" name="ob-form-weight" id="ob-form-weight" placeholder="weight"/>
-                        <button>Add</button>
-                    </form>
+                    <AddForm setTreeRoot={setTreeRoot}/>
                     <button className="ob-side-arrow">&#62;</button>
                 </div>
             </div>

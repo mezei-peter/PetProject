@@ -25,6 +25,7 @@ public class DevPetService implements PetService {
 
     @Override
     public PetNodeDto insertPet(UUID randomUUID, String petName, int petWeight) {
-        return null;
+        petBinaryTree.addValue(petName, petWeight);
+        return petNodeConverter.convertPetNodeToDto(petBinaryTree.getRoot());
     }
 }
