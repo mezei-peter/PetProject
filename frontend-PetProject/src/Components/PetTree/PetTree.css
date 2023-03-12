@@ -1,18 +1,17 @@
 #component-pet-tree {
     position: relative;
     border: 2px solid black;
-    width: 100%;
     overflow: scroll;
+    height: 63%;
+}
+
+#component-pet-tree .inner-wrapper {
+    width: 300%;
+    position: relative;
 }
 
 #component-pet-tree .invisible {
     visibility: hidden;
-}
-
-#component-pet-tree .inner-wrapper {
-    width: 200%;
-    position: relative;
-    overflow: scroll;
 }
 
 #component-pet-tree ul {
