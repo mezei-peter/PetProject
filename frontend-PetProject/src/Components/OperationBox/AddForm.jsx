@@ -8,11 +8,27 @@ function AddForm({setTreeRoot}) {
             return;
         }
 
+        fetch("/api/tree/test", {
+            method: "PUT",
+            headers: {"Content-type": "application/json"},
+            body: JSON.stringify({"petName": name, "petWeight": weight})
+        })
+            .then(response => {
+                if (response.status !== 200) {
+                    throw new Error("Server responded with: " + response.status);
+                }
+                return response.json();
+            })
+            .then(data => setTreeRoot(data))
+            .catch(ex => {
+                console.error(ex);
+            });
     };
 
     return (
         <form id="ob-form" onSubmit={event => {
             event.preventDefault();
+            handleSubmit();
         }}>
             <h2>Add pet</h2>
             <input type="text" name="ob-form-name" id="ob-form-name" placeholder="name" required

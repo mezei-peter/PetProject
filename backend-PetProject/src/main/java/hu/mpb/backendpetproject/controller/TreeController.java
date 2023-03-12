@@ -1,5 +1,6 @@
 package hu.mpb.backendpetproject.controller;
 
+import hu.mpb.backendpetproject.controller.dto.NewPetDto;
 import hu.mpb.backendpetproject.controller.dto.PetNodeDto;
 import hu.mpb.backendpetproject.model.PetNode;
 import hu.mpb.backendpetproject.service.pet.PetService;
@@ -32,7 +33,9 @@ public class TreeController {
     }
 
     @PutMapping(value = "/test", produces = "application/json")
-    private ResponseEntity<PetNodeDto> putPetNode(@RequestBody String petName, @RequestBody int petWeight) {
+    private ResponseEntity<PetNodeDto> putPetNode(@RequestBody NewPetDto newPetDto) {
+        String petName = newPetDto.petName();
+        int petWeight = newPetDto.petWeight();
         PetNodeDto result = petService.insertPet(UUID.randomUUID(), petName, petWeight);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
