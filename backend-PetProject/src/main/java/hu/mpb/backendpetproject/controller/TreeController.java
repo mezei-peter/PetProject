@@ -1,6 +1,7 @@
 package hu.mpb.backendpetproject.controller;
 
 import hu.mpb.backendpetproject.controller.dto.PetNodeDto;
+import hu.mpb.backendpetproject.model.PetNode;
 import hu.mpb.backendpetproject.service.pet.PetService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +20,15 @@ public class TreeController {
 
     @GetMapping(value = "/test", produces = "application/json")
     private ResponseEntity<PetNodeDto> getTestTree() {
+        PetNodeDto result = petService.getPetNodeDto(UUID.randomUUID());
+        if (result == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
         return new ResponseEntity<>(
-                petService.getPetNodeDto(UUID.randomUUID()),
+                result,
                 HttpStatus.OK
         );
-        /*return new ResponseEntity<>(HttpStatus.NO_CONTENT);*/
     }
 
     @PutMapping(value = "/test", produces = "application/json")

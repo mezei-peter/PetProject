@@ -1,32 +1,30 @@
 package hu.mpb.backendpetproject.service.pet;
 
 import hu.mpb.backendpetproject.controller.dto.PetNodeDto;
+import hu.mpb.backendpetproject.model.PetBinaryTree;
+import hu.mpb.backendpetproject.service.binarytree.SimplePetBinaryTreeService;
+import hu.mpb.backendpetproject.service.dtoConverter.PetNodeConverter;
 
 import java.util.UUID;
 
 public class DevPetService implements PetService {
-    private final PetNodeDto currentPetNodeDto = new PetNodeDto(
-            "Root",
-            30,
-            new PetNodeDto("Left", 20, null, null),
-            new PetNodeDto("Right", 60,
-                    new PetNodeDto(
-                            "Right-Left", 40, null, null
-                    ),
-                    new PetNodeDto("Right-Right", 70,
-                            null,
-                            new PetNodeDto("Right-Right-Right", 80, null, null)
-                    )
-            )
-    );
+    private final PetNodeConverter petNodeConverter;
+    private final PetBinaryTree petBinaryTree = new PetBinaryTree(new SimplePetBinaryTreeService());
+
+    public DevPetService(PetNodeConverter petNodeConverter) {
+        this.petNodeConverter = petNodeConverter;
+    }
 
     @Override
     public PetNodeDto getPetNodeDto(UUID petNodeId) {
-        return currentPetNodeDto;
+        if (petBinaryTree.getRoot() == null) {
+            return null;
+        }
+        return petNodeConverter.convertPetNodeToDto(petBinaryTree.getRoot());
     }
 
     @Override
     public PetNodeDto insertPet(UUID randomUUID, String petName, int petWeight) {
-        return currentPetNodeDto;
+        return null;
     }
 }

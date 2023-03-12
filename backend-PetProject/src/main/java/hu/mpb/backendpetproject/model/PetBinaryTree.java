@@ -4,6 +4,7 @@ import hu.mpb.backendpetproject.service.binarytree.PetBinaryTreeService;
 
 public class PetBinaryTree {
     private PetNode root;
+
     private final PetBinaryTreeService petBinaryTreeService;
 
     public PetBinaryTree(PetBinaryTreeService petBinaryTreeService) {
@@ -18,5 +19,9 @@ public class PetBinaryTree {
             return;
         }
         petBinaryTreeService.addNodeToRoot(root, weight, name);
+    }
+
+    public PetNode getRoot() {
+        return root;
     }
 }
