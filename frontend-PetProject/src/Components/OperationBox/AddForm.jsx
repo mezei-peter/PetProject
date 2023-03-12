@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 
 function AddForm({setTreeRoot}) {
     const [name, setName] = useState("");
-    const [weight, setWeight] = useState(0);
+    const [weight, setWeight] = useState("");
     const handleSubmit = () => {
         if (!name || weight <= 0) {
             return;
@@ -11,7 +11,7 @@ function AddForm({setTreeRoot}) {
         fetch("/api/tree/test", {
             method: "PUT",
             headers: {"Content-type": "application/json"},
-            body: JSON.stringify({"petName": name, "petWeight": weight})
+            body: JSON.stringify({"petName": name, "petWeight": parseInt(weight)})
         })
             .then(response => {
                 if (response.status !== 200) {
@@ -19,7 +19,11 @@ function AddForm({setTreeRoot}) {
                 }
                 return response.json();
             })
-            .then(data => setTreeRoot(data))
+            .then(data => {
+                setTreeRoot(data);
+                setName("");
+                setWeight("");
+            })
             .catch(ex => {
                 console.error(ex);
             });
@@ -31,11 +35,12 @@ function AddForm({setTreeRoot}) {
             handleSubmit();
         }}>
             <h2>Add pet</h2>
-            <input type="text" name="ob-form-name" id="ob-form-name" placeholder="name" required
+            <input type="text" name="ob-form-name" id="ob-form-name" placeholder="name" required value={name}
                    onChange={event => setName(event.target.value)}/>
             <input type="number" min="1" step="1" name="ob-form-weight" id="ob-form-weight" placeholder="weight"
+                   value={weight}
                    required
-                   onChange={event => setWeight(parseInt(event.target.value))}/>
+                   onChange={event => setWeight(event.target.value)}/>
             <button>Add</button>
         </form>
     );
