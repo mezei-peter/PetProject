@@ -21,7 +21,7 @@ function PetTree({root, setRoot, emptyRoot}) {
         element.scrollLeft += currentX - mouseX;
         element.scrollTop += currentY - mouseY;
         mousePosition.current = {x: mouseX, y: mouseY};
-    }
+    };
 
     useEffect(() => {
         fetch("/api/tree/test")
@@ -54,13 +54,13 @@ function PetTree({root, setRoot, emptyRoot}) {
                 setWentWrong(true);
             });
     }, []);
-
     if (wentWrong) {
         return <div>Something went wrong.</div>;
-    }
 
+    }
     if (loading) {
         return <div>Loading...</div>;
+
     }
 
     return (
