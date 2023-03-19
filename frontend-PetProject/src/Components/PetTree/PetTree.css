@@ -1,16 +1,20 @@
 #component-pet-tree {
-    position: absolute;
+    position: relative;
     border: 2px solid black;
+    overflow: scroll;
+    height: 63%;
+
+    user-select: none;
+    cursor: move;
+}
+
+#component-pet-tree .inner-wrapper {
     width: 300%;
-    overflow: auto;
+    position: relative;
 }
 
 #component-pet-tree .invisible {
     visibility: hidden;
-}
-
-#component-pet-tree .inner-wrapper {
-    position: relative;
 }
 
 #component-pet-tree ul {
@@ -108,4 +112,10 @@
 #component-pet-tree li div img {
     height: 2em;
     width: 2em;
+}
+
+@media (pointer: fine) {
+    #component-pet-tree {
+        overflow: hidden;
+    }
 }

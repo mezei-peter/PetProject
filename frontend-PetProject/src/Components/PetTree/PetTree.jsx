@@ -1,11 +1,27 @@
 import './PetTree.css';
 
 import PetNode from './PetNode';
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 function PetTree({root, setRoot, emptyRoot}) {
     const [wentWrong, setWentWrong] = useState(false);
     const [loading, setLoading] = useState(true);
+    const mouseDown = useRef(false);
+    const mousePosition = useRef({x: 0, y: 0});
+    const topElement = document.getElementById("component-pet-tree");
+
+    const handleMouseMove = (mouseX, mouseY, element) => {
+        if (!mouseDown.current) {
+            mousePosition.current = {x: mouseX, y: mouseY};
+            return;
+        }
+
+        const currentX = mousePosition.current.x;
+        const currentY = mousePosition.current.y;
+        element.scrollLeft += currentX - mouseX;
+        element.scrollTop += currentY - mouseY;
+        mousePosition.current = {x: mouseX, y: mouseY};
+    };
 
     useEffect(() => {
         fetch("/api/tree/test")
@@ -38,19 +54,26 @@ function PetTree({root, setRoot, emptyRoot}) {
                 setWentWrong(true);
             });
     }, []);
-
     if (wentWrong) {
         return <div>Something went wrong.</div>;
-    }
 
+    }
     if (loading) {
         return <div>Loading...</div>;
 
     }
 
     return (
-        <div id="component-pet-tree">
-            <div className="inner-wrapper">
+        <div id="component-pet-tree"
+             onMouseDown={() => mouseDown.current = true}
+             onMouseUp={() => mouseDown.current = false}
+             onMouseLeave={() => mouseDown.current = false}
+             onMouseMove={event => handleMouseMove(event.clientX, event.clientY, topElement)}>
+            <div className="inner-wrapper"
+                 onMouseDown={() => mouseDown.current = true}
+                 onMouseUp={() => mouseDown.current = false}
+                 onMouseLeave={() => mouseDown.current = false}
+                 onMouseMove={event => handleMouseMove(event.clientX, event.clientY, topElement)}>
                 <ul>
                     <PetNode invisible={root.invisible} leftChild={root.leftChild} rightChild={root.rightChild}
                              name={root.name}
