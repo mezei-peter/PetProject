@@ -103,7 +103,7 @@ function PetTree({root, setRoot, emptyRoot}) {
 
     return (
         <>
-            <input type="range" min={MIN_ZOOM} max={MAX_ZOOM} defaultValue={zoomValue} id="tree-size-controller"
+            <input type="range" min={MIN_ZOOM} max={MAX_ZOOM} value={zoomValue} id="tree-size-controller"
                    onChange={event => {
                        setZoomValue(event.target.value)
                    }}/>
