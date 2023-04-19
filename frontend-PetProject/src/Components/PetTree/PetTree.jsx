@@ -9,6 +9,9 @@ function PetTree({root, setRoot, emptyRoot}) {
     const mouseDown = useRef(false);
     const mousePosition = useRef({x: 0, y: 0});
     const topElement = document.getElementById("component-pet-tree");
+
+    const MAX_ZOOM = 120;
+    const MIN_ZOOM = 1;
     const [zoomValue, setZoomValue] = useState(100);
 
     const handleMouseMove = (mouseX, mouseY, element) => {
@@ -59,6 +62,21 @@ function PetTree({root, setRoot, emptyRoot}) {
             });
     }, []);
 
+    const handleWheel = event => {
+        const zoomChange = event.deltaY <= 0 ? 5 : -5;
+        const result = Number(zoomValue) + Number(zoomChange);
+        if (result <= MIN_ZOOM) {
+            setZoomValue(MIN_ZOOM);
+            return;
+        }
+        if (result >= MAX_ZOOM) {
+            setZoomValue(MAX_ZOOM);
+            return;
+        }
+        setZoomValue(result);
+    }
+
+
     if (wentWrong) {
         return <div>Something went wrong.</div>;
 
@@ -85,16 +103,16 @@ function PetTree({root, setRoot, emptyRoot}) {
 
     return (
         <>
-            <input type="range" min="1" max="120" defaultValue={zoomValue} id="tree-size-controller"
+            <input type="range" min={MIN_ZOOM} max={MAX_ZOOM} defaultValue={zoomValue} id="tree-size-controller"
                    onChange={event => {
-                       console.log(event.target.value)
                        setZoomValue(event.target.value)
                    }}/>
             <div id="component-pet-tree"
                  onMouseDown={() => mouseDown.current = true}
                  onMouseUp={() => mouseDown.current = false}
                  onMouseLeave={() => mouseDown.current = false}
-                 onMouseMove={event => handleMouseMove(event.clientX, event.clientY, topElement)}>
+                 onMouseMove={event => handleMouseMove(event.clientX, event.clientY, topElement)}
+                 onWheel={event => handleWheel(event)}>
                 <div className="inner-wrapper"
                      style={{
                          width: calculateInnerWrapperWidth(),
