@@ -83,25 +83,28 @@ function PetTree({root, setRoot, emptyRoot}) {
     }
 
     return (
-        <div id="component-pet-tree"
-             onMouseDown={() => mouseDown.current = true}
-             onMouseUp={() => mouseDown.current = false}
-             onMouseLeave={() => mouseDown.current = false}
-             onMouseMove={event => handleMouseMove(event.clientX, event.clientY, topElement)}>
-            <div className="inner-wrapper"
-                 style={{
-                     width: calculateInnerWrapperWidth()
-                 }}
+        <>
+            <input type="range" min="1" max="1000" id="tree-size-controller"/>
+            <div id="component-pet-tree"
                  onMouseDown={() => mouseDown.current = true}
                  onMouseUp={() => mouseDown.current = false}
                  onMouseLeave={() => mouseDown.current = false}
                  onMouseMove={event => handleMouseMove(event.clientX, event.clientY, topElement)}>
-                <ul>
-                    <PetNode invisible={root.invisible} leftChild={root.leftChild} rightChild={root.rightChild}
-                             name={root.name} weight={root.weight}/>
-                </ul>
+                <div className="inner-wrapper"
+                     style={{
+                         width: calculateInnerWrapperWidth()
+                     }}
+                     onMouseDown={() => mouseDown.current = true}
+                     onMouseUp={() => mouseDown.current = false}
+                     onMouseLeave={() => mouseDown.current = false}
+                     onMouseMove={event => handleMouseMove(event.clientX, event.clientY, topElement)}>
+                    <ul>
+                        <PetNode invisible={root.invisible} leftChild={root.leftChild} rightChild={root.rightChild}
+                                 name={root.name} weight={root.weight}/>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

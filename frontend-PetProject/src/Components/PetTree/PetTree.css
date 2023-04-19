@@ -1,3 +1,11 @@
+#tree-size-controller {
+    width: 98%;
+    position: absolute;
+    right: 1%;
+    transform: translateY(1em);
+    z-index: 2;
+}
+
 #component-pet-tree {
     position: relative;
     border: 2px solid black;
@@ -17,10 +25,10 @@
 }
 
 #component-pet-tree ul {
-    padding-top: 1em; 
+    padding-top: 1em;
     position: relative;
     display: flex;
-    
+
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
@@ -31,12 +39,12 @@
 }
 
 #component-pet-tree li {
-    float: left; 
+    float: left;
     text-align: center;
     list-style-type: none;
     position: relative;
     padding: 1em 0.25em 0 0.25em;
-    
+
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
@@ -49,7 +57,7 @@
     width: 50%; height: 1em;
 }
 #component-pet-tree li::after{
-    right: auto; 
+    right: auto;
     left: 50%;
     border-left: 1px solid var(--fontcolor-secondary);
 }
@@ -90,11 +98,11 @@
     font-family: arial, verdana, tahoma;
     font-size: 20px;
     display: inline-block;
-    
+
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    
+
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
@@ -105,10 +113,10 @@
     box-shadow: 10px 3px var(--color-detail);
     border: 1px solid var(--color-detail);
 }
-#component-pet-tree li div:hover+ul li div, 
-#component-pet-tree li div:hover+ul li::after, 
-#component-pet-tree li div:hover+ul li::before, 
-#component-pet-tree li div:hover+ul::before, 
+#component-pet-tree li div:hover+ul li div,
+#component-pet-tree li div:hover+ul li::after,
+#component-pet-tree li div:hover+ul li::before,
+#component-pet-tree li div:hover+ul::before,
 #component-pet-tree li div:hover+ul ul::before{
     border-color:  var(--color-primary);
 }
@@ -121,5 +129,11 @@
 @media (pointer: fine) {
     #component-pet-tree {
         overflow: hidden;
+    }
+}
+
+@media (orientation: landscape) {
+    #tree-size-controller {
+        width: 50%;
     }
 }
