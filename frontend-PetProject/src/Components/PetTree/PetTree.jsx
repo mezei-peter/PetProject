@@ -11,6 +11,9 @@ function PetTree({root, setRoot, emptyRoot}) {
     const topElement = document.getElementById("component-pet-tree");
 
     const handleMouseMove = (mouseX, mouseY, element) => {
+        /*console.log("PET NODE " + PET_NODE_WIDTH())
+        console.log("PET NODE TIMES COUNT " + PET_NODE_WIDTH() * PET_NODE_COUNT)
+        console.log("DOCUMENT BODY " + ROOT_WIDTH)*/
         if (!mouseDown.current) {
             mousePosition.current = {x: mouseX, y: mouseY};
             return;
@@ -54,6 +57,11 @@ function PetTree({root, setRoot, emptyRoot}) {
                 setWentWrong(true);
             });
     }, []);
+
+    //ROOT_WIDTH > PET_NODE_WIDTH()
+    //                          ? ROOT_WIDTH + "px"
+    //                          : PET_NODE_WIDTH() * PET_NODE_COUNT + "px"
+
     if (wentWrong) {
         return <div>Something went wrong.</div>;
 
@@ -63,6 +71,22 @@ function PetTree({root, setRoot, emptyRoot}) {
 
     }
 
+    const calculateInnerWrapperWidth = () => {
+        const outermostDivWidth = document.getElementById("root").clientWidth;
+        if (root.invisible) {
+            return outermostDivWidth;
+        }
+        console.log(document.querySelector(".pet-node"))
+        let petNodeWidth = document.querySelector(".pet-node")?.clientWidth ?? 0;
+        const petNodeCount = document.getElementsByClassName("pet-node").length;
+        const widthRatioWithExtraSpace = 1.5;
+        petNodeWidth = petNodeWidth * widthRatioWithExtraSpace * petNodeCount;
+        if (outermostDivWidth > petNodeWidth) {
+            return outermostDivWidth;
+        }
+        return petNodeWidth;
+    }
+
     return (
         <div id="component-pet-tree"
              onMouseDown={() => mouseDown.current = true}
@@ -70,14 +94,16 @@ function PetTree({root, setRoot, emptyRoot}) {
              onMouseLeave={() => mouseDown.current = false}
              onMouseMove={event => handleMouseMove(event.clientX, event.clientY, topElement)}>
             <div className="inner-wrapper"
+                 style={{
+                     width: calculateInnerWrapperWidth()
+                 }}
                  onMouseDown={() => mouseDown.current = true}
                  onMouseUp={() => mouseDown.current = false}
                  onMouseLeave={() => mouseDown.current = false}
                  onMouseMove={event => handleMouseMove(event.clientX, event.clientY, topElement)}>
                 <ul>
                     <PetNode invisible={root.invisible} leftChild={root.leftChild} rightChild={root.rightChild}
-                             name={root.name}
-                             weight={root.weight}/>
+                             name={root.name} weight={root.weight}/>
                 </ul>
             </div>
         </div>

@@ -9,7 +9,7 @@ function PetNode({invisible, leftChild, rightChild, name, weight}) {
 
     return (
         <li>
-            <div>
+            <div className="pet-node">
                 <img src="https://cdn.pixabay.com/photo/2013/07/13/13/41/pig-161381_960_720.png" alt="animal portrait"/>
                 <p>{name}</p>
                 <p>{weight}kg</p>
