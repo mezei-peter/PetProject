@@ -11,9 +11,6 @@ function PetTree({root, setRoot, emptyRoot}) {
     const topElement = document.getElementById("component-pet-tree");
 
     const handleMouseMove = (mouseX, mouseY, element) => {
-        /*console.log("PET NODE " + PET_NODE_WIDTH())
-        console.log("PET NODE TIMES COUNT " + PET_NODE_WIDTH() * PET_NODE_COUNT)
-        console.log("DOCUMENT BODY " + ROOT_WIDTH)*/
         if (!mouseDown.current) {
             mousePosition.current = {x: mouseX, y: mouseY};
             return;
@@ -57,10 +54,6 @@ function PetTree({root, setRoot, emptyRoot}) {
                 setWentWrong(true);
             });
     }, []);
-
-    //ROOT_WIDTH > PET_NODE_WIDTH()
-    //                          ? ROOT_WIDTH + "px"
-    //                          : PET_NODE_WIDTH() * PET_NODE_COUNT + "px"
 
     if (wentWrong) {
         return <div>Something went wrong.</div>;
