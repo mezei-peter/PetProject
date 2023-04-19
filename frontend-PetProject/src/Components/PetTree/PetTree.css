@@ -19,10 +19,15 @@
 #component-pet-tree ul {
     padding-top: 1em; 
     position: relative;
+    display: flex;
     
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
+}
+
+#component-pet-tree > .inner-wrapper > ul > li {
+    margin: auto;
 }
 
 #component-pet-tree li {
