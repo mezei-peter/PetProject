@@ -9,6 +9,7 @@ function PetTree({root, setRoot, emptyRoot}) {
     const mouseDown = useRef(false);
     const mousePosition = useRef({x: 0, y: 0});
     const topElement = document.getElementById("component-pet-tree");
+    const [zoomValue, setZoomValue] = useState(100);
 
     const handleMouseMove = (mouseX, mouseY, element) => {
         if (!element) {
@@ -84,7 +85,11 @@ function PetTree({root, setRoot, emptyRoot}) {
 
     return (
         <>
-            <input type="range" min="1" max="1000" id="tree-size-controller"/>
+            <input type="range" min="1" max="120" defaultValue={zoomValue} id="tree-size-controller"
+                   onChange={event => {
+                       console.log(event.target.value)
+                       setZoomValue(event.target.value)
+                   }}/>
             <div id="component-pet-tree"
                  onMouseDown={() => mouseDown.current = true}
                  onMouseUp={() => mouseDown.current = false}
@@ -92,7 +97,8 @@ function PetTree({root, setRoot, emptyRoot}) {
                  onMouseMove={event => handleMouseMove(event.clientX, event.clientY, topElement)}>
                 <div className="inner-wrapper"
                      style={{
-                         width: calculateInnerWrapperWidth()
+                         width: calculateInnerWrapperWidth(),
+                         zoom: zoomValue + "%"
                      }}
                      onMouseDown={() => mouseDown.current = true}
                      onMouseUp={() => mouseDown.current = false}
