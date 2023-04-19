@@ -76,7 +76,6 @@ function PetTree({root, setRoot, emptyRoot}) {
         if (root.invisible) {
             return outermostDivWidth;
         }
-        console.log(document.querySelector(".pet-node"))
         let petNodeWidth = document.querySelector(".pet-node")?.clientWidth ?? 0;
         const petNodeCount = document.getElementsByClassName("pet-node").length;
         const widthRatioWithExtraSpace = 1.5;
