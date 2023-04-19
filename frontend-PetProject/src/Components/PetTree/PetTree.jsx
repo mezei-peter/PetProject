@@ -11,6 +11,9 @@ function PetTree({root, setRoot, emptyRoot}) {
     const topElement = document.getElementById("component-pet-tree");
 
     const handleMouseMove = (mouseX, mouseY, element) => {
+        if (!element) {
+            return;
+        }
         if (!mouseDown.current) {
             mousePosition.current = {x: mouseX, y: mouseY};
             return;
