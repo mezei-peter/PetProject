@@ -1,11 +1,11 @@
 package hu.mpb.backendpetproject.service.pet;
 
-import hu.mpb.backendpetproject.controller.dto.PetNodeDto;
+import hu.mpb.backendpetproject.model.PetNode;
 
 import java.util.UUID;
 
 public interface PetService {
-    public PetNodeDto getPetNodeDto(UUID petNodeId);
+    public PetNode getPetNode(UUID petNodeId);
 
-    PetNodeDto insertPet(UUID randomUUID, String petName, int petWeight);
+    PetNode insertPet(UUID randomUUID, String petName, int petWeight);
 }
