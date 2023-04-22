@@ -1,7 +1,6 @@
 package hu.mpb.backendpetproject.controller;
 
 import hu.mpb.backendpetproject.controller.dto.NewPetDto;
-import hu.mpb.backendpetproject.controller.dto.PetNodeDto;
 import hu.mpb.backendpetproject.model.PetNode;
 import hu.mpb.backendpetproject.service.pet.PetService;
 import org.springframework.http.HttpStatus;
@@ -20,8 +19,8 @@ public class TreeController {
     }
 
     @GetMapping(value = "/test", produces = "application/json")
-    private ResponseEntity<PetNodeDto> getTestTree() {
-        PetNodeDto result = petService.getPetNodeDto(UUID.randomUUID());
+    private ResponseEntity<PetNode> getTestTree() {
+        PetNode result = petService.getPetNode(UUID.randomUUID());
         if (result == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -33,10 +32,10 @@ public class TreeController {
     }
 
     @PutMapping(value = "/test", produces = "application/json")
-    private ResponseEntity<PetNodeDto> putPetNode(@RequestBody NewPetDto newPetDto) {
+    private ResponseEntity<PetNode> putPetNode(@RequestBody NewPetDto newPetDto) {
         String petName = newPetDto.petName();
         int petWeight = newPetDto.petWeight();
-        PetNodeDto result = petService.insertPet(UUID.randomUUID(), petName, petWeight);
+        PetNode result = petService.insertPet(UUID.randomUUID(), petName, petWeight);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

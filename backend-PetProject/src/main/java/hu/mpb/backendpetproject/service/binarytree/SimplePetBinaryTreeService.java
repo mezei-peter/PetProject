@@ -14,19 +14,19 @@ public class SimplePetBinaryTreeService implements PetBinaryTreeService {
     private void addNodeToRoot(PetNode root, int weight, String name, Queue<PetNode> nodeQueue) {
         do {
             PetNode node = nodeQueue.size() == 0 ? root : nodeQueue.poll();
-            PetNode left = node.getLeft();
-            PetNode right = node.getRight();
+            PetNode left = node.getLeftChild();
+            PetNode right = node.getRightChild();
 
             if (left == null) {
-                node.setLeft(new PetNode(name, weight));
+                node.setLeftChild(new PetNode(name, weight));
                 return;
             }
             if (right == null) {
-                node.setRight(new PetNode(name, weight));
+                node.setRightChild(new PetNode(name, weight));
                 return;
             }
-            nodeQueue.add(node.getLeft());
-            nodeQueue.add(node.getRight());
+            nodeQueue.add(node.getLeftChild());
+            nodeQueue.add(node.getRightChild());
         } while (nodeQueue.size() > 0);
     }
 }

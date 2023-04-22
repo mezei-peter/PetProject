@@ -23,16 +23,16 @@ class SimplePetBinaryTreeServiceTest {
         service.addNodeToRoot(root, 9, "exp9");
         service.addNodeToRoot(root, 10, "exp10");
 
-        PetNode result1 = root.getLeft();
-        PetNode result2 = root.getRight();
-        PetNode result3 = root.getLeft().getLeft();
-        PetNode result4 = root.getLeft().getRight();
-        PetNode result5 = root.getRight().getLeft();
-        PetNode result6 = root.getRight().getRight();
-        PetNode result7 = root.getLeft().getLeft().getLeft();
-        PetNode result8 = root.getLeft().getLeft().getRight();
-        PetNode result9 = root.getLeft().getRight().getLeft();
-        PetNode result10 = root.getLeft().getRight().getRight();
+        PetNode result1 = root.getLeftChild();
+        PetNode result2 = root.getRightChild();
+        PetNode result3 = root.getLeftChild().getLeftChild();
+        PetNode result4 = root.getLeftChild().getRightChild();
+        PetNode result5 = root.getRightChild().getLeftChild();
+        PetNode result6 = root.getRightChild().getRightChild();
+        PetNode result7 = root.getLeftChild().getLeftChild().getLeftChild();
+        PetNode result8 = root.getLeftChild().getLeftChild().getRightChild();
+        PetNode result9 = root.getLeftChild().getRightChild().getLeftChild();
+        PetNode result10 = root.getLeftChild().getRightChild().getRightChild();
 
         assertAll(
                 () -> assertEquals(1, result1.getWeight()),

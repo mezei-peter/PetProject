@@ -3,30 +3,30 @@ package hu.mpb.backendpetproject.model;
 public class PetNode {
     private final String name;
     private final int weight;
-    private PetNode left;
-    private PetNode right;
+    private PetNode leftChild;
+    private PetNode rightChild;
 
     public PetNode(String name, int weight) {
         this.name = name;
         this.weight = weight;
-        this.left = null;
-        this.right = null;
+        this.leftChild = null;
+        this.rightChild = null;
     }
 
-    public void setLeft(PetNode left) {
-        this.left = left;
+    public void setLeftChild(PetNode leftChild) {
+        this.leftChild = leftChild;
     }
 
-    public void setRight(PetNode right) {
-        this.right = right;
+    public void setRightChild(PetNode rightChild) {
+        this.rightChild = rightChild;
     }
 
-    public PetNode getLeft() {
-        return left;
+    public PetNode getLeftChild() {
+        return leftChild;
     }
 
-    public PetNode getRight() {
-        return right;
+    public PetNode getRightChild() {
+        return rightChild;
     }
 
     public int getWeight() {

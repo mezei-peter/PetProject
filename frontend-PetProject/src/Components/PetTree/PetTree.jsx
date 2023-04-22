@@ -10,7 +10,14 @@ function PetTree({root, setRoot, emptyRoot}) {
     const mousePosition = useRef({x: 0, y: 0});
     const topElement = document.getElementById("component-pet-tree");
 
+    const MAX_ZOOM = 120;
+    const MIN_ZOOM = 1;
+    const [zoomValue, setZoomValue] = useState(100);
+
     const handleMouseMove = (mouseX, mouseY, element) => {
+        if (!element) {
+            return;
+        }
         if (!mouseDown.current) {
             mousePosition.current = {x: mouseX, y: mouseY};
             return;
@@ -54,6 +61,22 @@ function PetTree({root, setRoot, emptyRoot}) {
                 setWentWrong(true);
             });
     }, []);
+
+    const handleWheel = event => {
+        const zoomChange = event.deltaY <= 0 ? 5 : -5;
+        const result = Number(zoomValue) + Number(zoomChange);
+        if (result <= MIN_ZOOM) {
+            setZoomValue(MIN_ZOOM);
+            return;
+        }
+        if (result >= MAX_ZOOM) {
+            setZoomValue(MAX_ZOOM);
+            return;
+        }
+        setZoomValue(result);
+    }
+
+
     if (wentWrong) {
         return <div>Something went wrong.</div>;
 
@@ -63,24 +86,49 @@ function PetTree({root, setRoot, emptyRoot}) {
 
     }
 
+    const calculateInnerWrapperWidth = () => {
+        const outermostDivWidth = document.getElementById("root").clientWidth;
+        if (root.invisible) {
+            return outermostDivWidth;
+        }
+        let petNodeWidth = document.querySelector(".pet-node")?.clientWidth ?? 0;
+        const petNodeCount = document.getElementsByClassName("pet-node").length;
+        const widthRatioWithExtraSpace = 1.5;
+        petNodeWidth = petNodeWidth * widthRatioWithExtraSpace * petNodeCount;
+        if (outermostDivWidth > petNodeWidth) {
+            return outermostDivWidth;
+        }
+        return petNodeWidth;
+    }
+
     return (
-        <div id="component-pet-tree"
-             onMouseDown={() => mouseDown.current = true}
-             onMouseUp={() => mouseDown.current = false}
-             onMouseLeave={() => mouseDown.current = false}
-             onMouseMove={event => handleMouseMove(event.clientX, event.clientY, topElement)}>
-            <div className="inner-wrapper"
+        <>
+            <input type="range" min={MIN_ZOOM} max={MAX_ZOOM} value={zoomValue} id="tree-size-controller"
+                   onChange={event => {
+                       setZoomValue(event.target.value)
+                   }}/>
+            <div id="component-pet-tree"
                  onMouseDown={() => mouseDown.current = true}
                  onMouseUp={() => mouseDown.current = false}
                  onMouseLeave={() => mouseDown.current = false}
-                 onMouseMove={event => handleMouseMove(event.clientX, event.clientY, topElement)}>
-                <ul>
-                    <PetNode invisible={root.invisible} leftChild={root.leftChild} rightChild={root.rightChild}
-                             name={root.name}
-                             weight={root.weight}/>
-                </ul>
+                 onMouseMove={event => handleMouseMove(event.clientX, event.clientY, topElement)}
+                 onWheel={event => handleWheel(event)}>
+                <div className="inner-wrapper"
+                     style={{
+                         width: calculateInnerWrapperWidth(),
+                         zoom: zoomValue + "%"
+                     }}
+                     onMouseDown={() => mouseDown.current = true}
+                     onMouseUp={() => mouseDown.current = false}
+                     onMouseLeave={() => mouseDown.current = false}
+                     onMouseMove={event => handleMouseMove(event.clientX, event.clientY, topElement)}>
+                    <ul>
+                        <PetNode invisible={root.invisible} leftChild={root.leftChild} rightChild={root.rightChild}
+                                 name={root.name} weight={root.weight}/>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 
