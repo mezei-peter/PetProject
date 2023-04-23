@@ -28,4 +28,5 @@ The frontend and the backend communicate with each other through HTTP requests.
 - Browsing other users' pet trees.
 
 ## Usage
-🚧🚧 Work in progress. No screenshots yet. 🚧🚧
+#### Early build screenshot
+![Screenshot of a pet tree editing page from an early Pet Project version.](/screenshots/pet-project-early.png)
