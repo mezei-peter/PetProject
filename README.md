@@ -26,6 +26,7 @@ The frontend and the backend communicate with each other through HTTP requests.
 - Login system.
 - Ability to save a pet tree to the user's pet tree library.
 - Browsing other users' pet trees.
+- Image of pet changes based on its weight (e.g. 4kg - cat, 80kg - pig, 100.000kg+ - whale).
 
 ## Usage
 #### Early build screenshot
