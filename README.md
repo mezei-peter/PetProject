@@ -20,6 +20,7 @@ The frontend and the backend communicate with each other through HTTP requests.
 - Responsive frontend.
 
 #### Planned features
+- Prettier UI.
 - More CRUD operations on pets: remove, update.
 - Storing and restructuring trees into more complex structures: *binary search tree* or *red-black tree*.
 - Login system.
