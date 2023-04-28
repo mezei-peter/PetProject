@@ -5,6 +5,24 @@ My personal fullstack project with React.js and Java Spring. Users can organize 
 pets into tree structures and perform various operations on the data. I am planning to
 add community features, such as sharing Pet Trees and liking them. Currently it is in a quite early phase.
 
+## Usage
+To run the frontend: 
+```bash
+cd frontend-PetProject/
+npm i
+npm run dev
+```
+
+To run the backend: 
+```bash
+cd backend-PetProject/
+mvn clean package -DskipTests
+java -jar target/backend-PetProject-0.0.1-SNAPSHOT.jar
+```
+
+#### Early build screenshot
+![Screenshot of a pet tree editing page from an early Pet Project version.](/screenshots/pet-project-early.png)
+
 ## Used technologies
 - Java
   - Spring Boot
@@ -27,7 +45,3 @@ The frontend and the backend communicate with each other through HTTP requests.
 - Ability to save a pet tree to the user's pet tree library.
 - Browsing other users' pet trees.
 - Image of pet changes based on its weight (e.g. 4kg - cat, 80kg - pig, 100.000kg+ - whale).
-
-## Usage
-#### Early build screenshot
-![Screenshot of a pet tree editing page from an early Pet Project version.](/screenshots/pet-project-early.png)
