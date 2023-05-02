@@ -7,8 +7,14 @@
 }
 
 #component-operation-box button {
+    transition: all 0.3s ease-out;
     background-color: lightgray;
     border: 1px solid black;
+}
+
+#component-operation-box button:hover {
+    transition: all 0.2s ease-out;
+    background-color: darkgray;
 }
 
 #component-operation-box h2 {
@@ -25,7 +31,7 @@
 }
 
 #component-operation-box .highlight {
-    background-color: var(--color-secondary);
+    background-color: darkgray;
 }
 
 #component-operation-box #ob-selected-option {
