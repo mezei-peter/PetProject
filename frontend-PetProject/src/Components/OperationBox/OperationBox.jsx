@@ -28,12 +28,14 @@ function OperationBox({setTreeRoot}) {
         <div id="component-operation-box">
             <div className="operation-box">
                 <nav id="ob-options">
-                    {operationControls.map(oc => {
+                    {operationControls.map((oc, ocIndex) => {
                         let classList = "ob-option";
-                        if (currentFormIndex === operationControls.indexOf(oc)) {
+                        if (currentFormIndex === ocIndex) {
                             classList = classList.concat(" highlight");
                         }
-                        return <button key={oc.name} className={classList}>{oc.name}</button>
+                        return <button key={oc.name} className={classList}
+                                       onClick={() => setCurrentFormIndex(ocIndex)}
+                        >{oc.name}</button>
                     })}
                 </nav>
                 <div id="ob-selected-option">
