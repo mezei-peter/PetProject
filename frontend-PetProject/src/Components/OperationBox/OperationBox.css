@@ -24,6 +24,10 @@
     width: 100%;
 }
 
+#component-operation-box .highlight {
+    background-color: var(--color-secondary);
+}
+
 #component-operation-box #ob-selected-option {
     display: flex;
     justify-content: space-between;

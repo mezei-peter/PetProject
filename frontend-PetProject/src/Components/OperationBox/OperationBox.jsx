@@ -1,22 +1,45 @@
 import './OperationBox.css';
 import AddForm from "./AddForm.jsx";
+import RemoveForm from "./RemoveForm";
+import {useState} from "react";
+
+class OperationControl {
+    constructor(name, form) {
+        this.name = name;
+        this.form = form;
+    }
+}
 
 function OperationBox({setTreeRoot}) {
+    const operationControls = [
+        new OperationControl("Add", <AddForm setTreeRoot={setTreeRoot}/>),
+        new OperationControl("Remove", <RemoveForm/>),
+    ];
+    const [currentFormIndex, setCurrentFormIndex] = useState(0);
 
+    const nextFormIndex = () => {
+        setCurrentFormIndex(currentFormIndex + 1 < operationControls.length ? currentFormIndex + 1 : 0);
+    };
+    const prevFormIndex = () => {
+        setCurrentFormIndex(currentFormIndex - 1 >= 0 ? currentFormIndex - 1 : operationControls.length - 1);
+    };
 
-    return(
+    return (
         <div id="component-operation-box">
             <div className="operation-box">
                 <nav id="ob-options">
-                    <button className="ob-option">Add</button>
-                    <button className="ob-option">Remove</button>
-                    <button className="ob-option">Find</button>
-                    <button className="ob-option">Update</button>
+                    {operationControls.map(oc => {
+                        let classList = "ob-option";
+                        if (currentFormIndex === operationControls.indexOf(oc)) {
+                            classList = classList.concat(" highlight");
+                        }
+                        return <button key={oc.name} className={classList}>{oc.name}</button>
+                    })}
                 </nav>
                 <div id="ob-selected-option">
-                    <button className="ob-side-arrow">&#60;</button>
-                    <AddForm setTreeRoot={setTreeRoot}/>
-                    <button className="ob-side-arrow">&#62;</button>
+                    <button className="ob-side-arrow" onClick={prevFormIndex}>&#60;</button>
+                    {operationControls[currentFormIndex].form}
+                    <button className="ob-side-arrow" onClick={nextFormIndex}>&#62;</button>
                 </div>
             </div>
         </div>
