@@ -1,6 +1,9 @@
 package hu.mpb.backendpetproject.model;
 
+import java.util.UUID;
+
 public class PetNode {
+    private final UUID uuid = UUID.randomUUID();
     private final String name;
     private final int weight;
     private PetNode leftChild;
