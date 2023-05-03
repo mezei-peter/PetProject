@@ -15,7 +15,7 @@ function App() {
     return (
         <>
             <Header/>
-            <OperationBox setTreeRoot={setTreeRoot}/>
+            <OperationBox treeRoot={treeRoot} setTreeRoot={setTreeRoot}/>
             <PetRenderOptions/>
             <PetTree root={treeRoot} emptyRoot={emptyTreeRoot} setRoot={setTreeRoot}/>
             <Footer/>

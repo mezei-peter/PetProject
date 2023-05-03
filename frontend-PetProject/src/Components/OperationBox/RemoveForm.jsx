@@ -1,14 +1,27 @@
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 
-function RemoveForm() {
+function RemoveForm({treeRoot}) {
     const petToRemove = useRef("");
+    const petData = new Set();
 
     const handleSubmit = () => {
         if (!petToRemove.current) {
             return;
         }
         //TODO
-    }
+    };
+
+    const breadthFirstSetFromTreeRoot = (root) => {
+        //TODO
+        const result = new Set();
+        result.add(root);
+        return result;
+    };
+
+    useEffect(() => {
+        breadthFirstSetFromTreeRoot(treeRoot).forEach(node => petData.add(node));
+        console.log(petData);
+    }, [treeRoot]);
 
     return (
         <form id="ob-form" onSubmit={event => {

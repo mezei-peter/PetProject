@@ -10,10 +10,10 @@ class OperationControl {
     }
 }
 
-function OperationBox({setTreeRoot}) {
+function OperationBox({treeRoot, setTreeRoot}) {
     const operationControls = [
         new OperationControl("Add", <AddForm setTreeRoot={setTreeRoot}/>),
-        new OperationControl("Remove", <RemoveForm/>),
+        new OperationControl("Remove", <RemoveForm treeRoot={treeRoot}/>),
     ];
     const [currentFormIndex, setCurrentFormIndex] = useState(0);
 
