@@ -60,4 +60,8 @@ public class PetBinaryTree {
         }
         return null;
     }
+
+    public void deleteNode(PetNode petNode) {
+        petBinaryTreeService.deleteNode(petNode);
+    }
 }

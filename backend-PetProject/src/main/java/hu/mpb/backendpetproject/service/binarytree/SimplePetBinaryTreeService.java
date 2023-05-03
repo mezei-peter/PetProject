@@ -20,6 +20,11 @@ public class SimplePetBinaryTreeService implements PetBinaryTreeService {
         return result;
     }
 
+    @Override
+    public void deleteNode(PetNode petNode) {
+        //TODO
+    }
+
     private void putSubTreeIntoSetDfs(PetNode subRoot, Set<PetNode> set) {
         set.add(subRoot);
         if (subRoot.hasLeftChild()) {

@@ -32,5 +32,10 @@ public class DevPetService implements PetService {
     @Override
     public void deleteNode(UUID uuid) {
         PetNode petNode = petBinaryTree.findNode(uuid);
+        if (petNode == null) {
+            return;
+        }
+
+        petBinaryTree.deleteNode(petNode);
     }
 }

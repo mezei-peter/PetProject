@@ -8,4 +8,6 @@ public interface PetBinaryTreeService {
     void addNodeToRoot(PetNode root, int weight, String name);
 
     Set<PetNode> convertToSet(PetNode root);
+
+    void deleteNode(PetNode petNode);
 }

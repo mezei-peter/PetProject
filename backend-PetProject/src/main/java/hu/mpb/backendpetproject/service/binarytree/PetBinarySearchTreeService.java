@@ -14,4 +14,9 @@ public class PetBinarySearchTreeService implements PetBinaryTreeService {
     public Set<PetNode> convertToSet(PetNode root) {
         return null;
     }
+
+    @Override
+    public void deleteNode(PetNode petNode) {
+
+    }
 }

@@ -4,8 +4,8 @@ import java.util.UUID;
 
 public class PetNode {
     private final UUID uuid = UUID.randomUUID();
-    private final String name;
-    private final int weight;
+    private String name;
+    private int weight;
     private PetNode leftChild;
     private PetNode rightChild;
 
@@ -54,5 +54,13 @@ public class PetNode {
 
     public boolean hasUUID(UUID uuid) {
         return this.uuid.equals(uuid);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 }
