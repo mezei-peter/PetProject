@@ -1,6 +1,6 @@
 package hu.mpb.backendpetproject.service.pet;
 
-import hu.mpb.backendpetproject.model.PetNode;
+import hu.mpb.backendpetproject.model.pettree.PetNode;
 
 import java.util.Set;
 import java.util.UUID;

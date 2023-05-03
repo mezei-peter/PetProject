@@ -1,4 +1,4 @@
-package hu.mpb.backendpetproject.model;
+package hu.mpb.backendpetproject.model.pettree;
 
 import hu.mpb.backendpetproject.service.binarytree.PetBinaryTreeService;
 

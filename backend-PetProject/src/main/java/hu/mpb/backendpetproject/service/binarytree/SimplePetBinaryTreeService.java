@@ -1,7 +1,7 @@
 package hu.mpb.backendpetproject.service.binarytree;
 
-import hu.mpb.backendpetproject.model.PetBinaryTree;
-import hu.mpb.backendpetproject.model.PetNode;
+import hu.mpb.backendpetproject.model.pettree.PetBinaryTree;
+import hu.mpb.backendpetproject.model.pettree.PetNode;
 
 import java.util.*;
 
@@ -20,7 +20,6 @@ public class SimplePetBinaryTreeService implements PetBinaryTreeService {
 
     @Override
     public void deleteNode(PetNode petNode, PetBinaryTree tree) {
-        //TODO
     }
 
     @Override

@@ -1,7 +1,7 @@
 package hu.mpb.backendpetproject.service.pet;
 
-import hu.mpb.backendpetproject.model.PetBinaryTree;
-import hu.mpb.backendpetproject.model.PetNode;
+import hu.mpb.backendpetproject.model.pettree.PetBinaryTree;
+import hu.mpb.backendpetproject.model.pettree.PetNode;
 import hu.mpb.backendpetproject.service.binarytree.SimplePetBinaryTreeService;
 
 import java.util.Set;
