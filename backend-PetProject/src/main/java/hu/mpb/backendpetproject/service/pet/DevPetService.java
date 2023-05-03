@@ -31,6 +31,6 @@ public class DevPetService implements PetService {
 
     @Override
     public void deleteNode(UUID uuid) {
-        //TODO
+        PetNode petNode = petBinaryTree.findNode(uuid);
     }
 }

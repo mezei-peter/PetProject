@@ -51,4 +51,8 @@ public class PetNode {
     public UUID getUuid() {
         return uuid;
     }
+
+    public boolean hasUUID(UUID uuid) {
+        return this.uuid.equals(uuid);
+    }
 }
