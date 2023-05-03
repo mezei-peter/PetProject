@@ -44,8 +44,22 @@ public class PetNode {
         return leftChild != null;
     }
 
+    public boolean hasLeftChild(UUID uuid) {
+        if (leftChild == null) {
+            return false;
+        }
+        return leftChild.uuid == uuid;
+    }
+
     public boolean hasRightChild() {
         return rightChild != null;
+    }
+
+    public boolean hasRightChild(UUID uuid) {
+        if (rightChild == null) {
+            return false;
+        }
+        return rightChild.uuid == uuid;
     }
 
     public UUID getUuid() {

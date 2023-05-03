@@ -1,5 +1,7 @@
 package hu.mpb.backendpetproject.service.binarytree;
 
+import hu.mpb.backendpetproject.model.generic.Pair;
+import hu.mpb.backendpetproject.model.pettree.ChildDirection;
 import hu.mpb.backendpetproject.model.pettree.PetBinaryTree;
 import hu.mpb.backendpetproject.model.pettree.PetNode;
 
@@ -20,6 +22,45 @@ public class SimplePetBinaryTreeService implements PetBinaryTreeService {
 
     @Override
     public void deleteNode(PetNode petNode, PetBinaryTree tree) {
+        Pair<PetNode, ChildDirection> parentData;
+        try {
+            parentData = findParentData(petNode, tree);
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Pair<PetNode, ChildDirection> findParentData(PetNode petNode, PetBinaryTree tree) throws Exception {
+        UUID uuid = petNode.getUuid();
+        PetNode root = tree.getRoot();
+        PetNode parent = findParentNodeInSubTree(root, petNode);
+        if (parent == null) {
+            throw new Exception("Parent not found for node " + uuid);
+        }
+        if (parent.hasLeftChild(petNode.getUuid())) {
+            return new Pair<>(parent, ChildDirection.LEFT);
+        } else {
+            return new Pair<>(parent, ChildDirection.RIGHT);
+        }
+    }
+
+    private PetNode findParentNodeInSubTree(PetNode subTreeRoot, PetNode petNode) {
+        if (subTreeRoot.hasLeftChild(petNode.getUuid()) || subTreeRoot.hasRightChild(petNode.getUuid())) {
+            return subTreeRoot;
+        }
+        if (subTreeRoot.hasLeftChild()) {
+            PetNode leftResult = findParentNodeInSubTree(subTreeRoot.getLeftChild(), petNode);
+            if (leftResult != null) {
+                return leftResult;
+            }
+        }
+        if (subTreeRoot.hasRightChild()) {
+            PetNode rightResult = findParentNodeInSubTree(subTreeRoot.getRightChild(), petNode);
+            if (rightResult != null) {
+                return rightResult;
+            }
+        }
+        return null;
     }
 
     @Override
