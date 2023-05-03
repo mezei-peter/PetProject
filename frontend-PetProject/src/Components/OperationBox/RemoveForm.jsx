@@ -1,14 +1,16 @@
 import {useEffect, useRef, useState} from "react";
 
-function RemoveForm({treeRoot}) {
-    const petToRemove = useRef("");
+function RemoveForm({treeRoot, setTreeRoot}) {
+    const petToRemoveId = useRef("");
     const [petMap, setPetMap] = useState(new Map());
 
-    const handleSubmit = () => {
-        if (!petToRemove.current) {
+    const handleSubmit = async () => {
+        if (!petToRemoveId.current) {
             return;
         }
-        //TODO
+        const response = await fetch(`/api/tree/test/${petToRemoveId.current}`, {method: "DELETE"});
+        const data = await response.json();
+        setTreeRoot(data);
     };
 
     useEffect(() => {
@@ -33,14 +35,14 @@ function RemoveForm({treeRoot}) {
     }, [treeRoot]);
 
     return (
-        <form id="ob-form" onSubmit={event => {
+        <form id="ob-form" onSubmit={async (event) => {
             event.preventDefault();
-            handleSubmit();
+            await handleSubmit();
         }}>
             <h2>Remove pet</h2>
             <label htmlFor="pets-select">Pet to remove: </label>
             <select name="pet-to-remove" id="pet-select"
-                    onChange={event => petToRemove.current = event.target.value}>
+                    onChange={event => petToRemoveId.current = event.target.value}>
                 <option value="">Select pet</option>
                 {Array.from(petMap.values())
                     .sort((a, b) => a.name.localeCompare(b.name))

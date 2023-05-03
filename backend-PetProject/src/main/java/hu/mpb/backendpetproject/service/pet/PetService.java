@@ -11,4 +11,6 @@ public interface PetService {
     PetNode insertPet(UUID randomUUID, String petName, int petWeight);
 
     Set<PetNode> getTreeAsSet();
+
+    void deleteNode(UUID uuid);
 }

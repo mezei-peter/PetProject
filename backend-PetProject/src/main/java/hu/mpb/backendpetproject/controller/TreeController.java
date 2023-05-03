@@ -49,4 +49,18 @@ public class TreeController {
         PetNode result = petService.insertPet(UUID.randomUUID(), petName, petWeight);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+    @DeleteMapping(value = "/test/{petNodeId}", produces = "application/json")
+    private ResponseEntity<PetNode> deletePetNodeAndGetNewRoot(@PathVariable String petNodeId) {
+        UUID uuid;
+        try {
+            uuid = UUID.fromString(petNodeId);
+        } catch (Throwable e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        petService.deleteNode(uuid);
+        return getTestTree();
+    }
 }

@@ -28,4 +28,9 @@ public class DevPetService implements PetService {
     public Set<PetNode> getTreeAsSet() {
         return petBinaryTree.asSet();
     }
+
+    @Override
+    public void deleteNode(UUID uuid) {
+        //TODO
+    }
 }
