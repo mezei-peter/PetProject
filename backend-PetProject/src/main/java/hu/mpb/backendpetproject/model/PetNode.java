@@ -47,4 +47,8 @@ public class PetNode {
     public boolean hasRightChild() {
         return rightChild != null;
     }
+
+    public UUID getUuid() {
+        return uuid;
+    }
 }

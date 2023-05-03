@@ -1,8 +1,8 @@
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 
 function RemoveForm({treeRoot}) {
     const petToRemove = useRef("");
-    let petMap = new Map();
+    const [petMap, setPetMap] = useState(new Map());
 
     const handleSubmit = () => {
         if (!petToRemove.current) {
@@ -20,13 +20,16 @@ function RemoveForm({treeRoot}) {
             const data = await response.json();
             return data;
         }
+
         fetchPetSet().then(data => {
             if (data) {
-                data.forEach(node => petMap.set(node.name, node));
+                const newPetMap = new Map(petMap);
+                data.forEach(node => newPetMap.set(node.uuid, node));
+                setPetMap(newPetMap);
             }
         });
 
-        return () => petMap = new Map();
+        return () => setPetMap(new Map());
     }, [treeRoot]);
 
     return (
@@ -39,8 +42,11 @@ function RemoveForm({treeRoot}) {
             <select name="pet-to-remove" id="pet-select"
                     onChange={event => petToRemove.current = event.target.value}>
                 <option value="">Select pet</option>
-                <option value="TEST">TEST</option>
-                //TODO: Render all pet names and uuids here
+                {Array.from(petMap.values())
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                    .map(pet => {
+                        return <option key={pet.uuid} value={pet.uuid}>{`${pet.name} (${pet.weight}kg)`}</option>;
+                    })}
             </select>
             <button>Delete</button>
         </form>
