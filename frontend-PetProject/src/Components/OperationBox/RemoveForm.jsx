@@ -11,16 +11,12 @@ function RemoveForm({treeRoot}) {
         //TODO
     };
 
-    const breadthFirstSetFromTreeRoot = (root) => {
-        //TODO
-        const result = new Set();
-        result.add(root);
-        return result;
-    };
-
     useEffect(() => {
-        breadthFirstSetFromTreeRoot(treeRoot).forEach(node => petData.add(node));
-        console.log(petData);
+        //TODO
+        async function fetchPetSet() {
+            const response = await fetch("/api/tree/test?convert=set");
+        }
+        fetchPetSet();
     }, [treeRoot]);
 
     return (

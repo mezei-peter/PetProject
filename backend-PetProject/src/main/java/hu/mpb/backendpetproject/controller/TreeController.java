@@ -19,8 +19,21 @@ public class TreeController {
     }
 
     @GetMapping(value = "/test", produces = "application/json")
-    private ResponseEntity<PetNode> getTestTree() {
-        PetNode result = petService.getPetNode(UUID.randomUUID());
+    private ResponseEntity<PetNode> getTestTree(@RequestParam(required = false) String convert) {
+        PetNode result = null;
+        if (convert != null) {
+            switch (convert) {
+                case "set" -> {
+                    result = petService.getTreeAsSet();
+                }
+                default -> {
+                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                }
+            }
+        } else {
+            result = petService.getPetNode();
+        }
+
         if (result == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
