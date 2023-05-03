@@ -4,6 +4,7 @@ import hu.mpb.backendpetproject.model.PetBinaryTree;
 import hu.mpb.backendpetproject.model.PetNode;
 import hu.mpb.backendpetproject.service.binarytree.SimplePetBinaryTreeService;
 
+import java.util.Set;
 import java.util.UUID;
 
 public class DevPetService implements PetService {
@@ -24,8 +25,7 @@ public class DevPetService implements PetService {
     }
 
     @Override
-    public PetNode getTreeAsSet() {
-        //TODO
-        return null;
+    public Set<PetNode> getTreeAsSet() {
+        return petBinaryTree.asSet();
     }
 }

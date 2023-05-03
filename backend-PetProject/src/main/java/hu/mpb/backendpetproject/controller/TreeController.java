@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -19,21 +20,8 @@ public class TreeController {
     }
 
     @GetMapping(value = "/test", produces = "application/json")
-    private ResponseEntity<PetNode> getTestTree(@RequestParam(required = false) String convert) {
-        PetNode result = null;
-        if (convert != null) {
-            switch (convert) {
-                case "set" -> {
-                    result = petService.getTreeAsSet();
-                }
-                default -> {
-                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-                }
-            }
-        } else {
-            result = petService.getPetNode();
-        }
-
+    private ResponseEntity<PetNode> getTestTree() {
+        PetNode result = petService.getPetNode();
         if (result == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -42,6 +30,16 @@ public class TreeController {
                 result,
                 HttpStatus.OK
         );
+    }
+
+    @GetMapping(value = "test/set", produces = "application/json")
+    private ResponseEntity<Set<PetNode>> getTestTreeAsSet() {
+        Set<PetNode> result = petService.getTreeAsSet();
+        if (result == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PutMapping(value = "/test", produces = "application/json")

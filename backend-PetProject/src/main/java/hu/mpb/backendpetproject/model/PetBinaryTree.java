@@ -2,6 +2,8 @@ package hu.mpb.backendpetproject.model;
 
 import hu.mpb.backendpetproject.service.binarytree.PetBinaryTreeService;
 
+import java.util.Set;
+
 public class PetBinaryTree {
     private PetNode root;
 
@@ -23,5 +25,12 @@ public class PetBinaryTree {
 
     public PetNode getRoot() {
         return root;
+    }
+
+    public Set<PetNode> asSet() {
+        if (root == null) {
+            return null;
+        }
+        return petBinaryTreeService.convertToSet(root);
     }
 }

@@ -2,14 +2,34 @@ package hu.mpb.backendpetproject.service.binarytree;
 
 import hu.mpb.backendpetproject.model.PetNode;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
 
 public class SimplePetBinaryTreeService implements PetBinaryTreeService {
     @Override
     public void addNodeToRoot(PetNode root, int weight, String name) {
         addNodeToRoot(root, weight, name, new LinkedList<>());
     }
+
+    @Override
+    public Set<PetNode> convertToSet(PetNode root) {
+        Set<PetNode> result = new HashSet<>();
+        putSubTreeIntoSetDfs(root, result);
+        return result;
+    }
+
+    private void putSubTreeIntoSetDfs(PetNode subRoot, Set<PetNode> set) {
+        set.add(subRoot);
+        if (subRoot.hasLeftChild()) {
+            putSubTreeIntoSetDfs(subRoot.getLeftChild(), set);
+        }
+        if (subRoot.hasRightChild()) {
+            putSubTreeIntoSetDfs(subRoot.getRightChild(), set);
+        }
+    }
+
 
     private void addNodeToRoot(PetNode root, int weight, String name, Queue<PetNode> nodeQueue) {
         do {

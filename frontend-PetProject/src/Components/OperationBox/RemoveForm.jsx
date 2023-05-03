@@ -2,7 +2,7 @@ import {useEffect, useRef} from "react";
 
 function RemoveForm({treeRoot}) {
     const petToRemove = useRef("");
-    const petData = new Set();
+    let petMap = new Map();
 
     const handleSubmit = () => {
         if (!petToRemove.current) {
@@ -12,11 +12,21 @@ function RemoveForm({treeRoot}) {
     };
 
     useEffect(() => {
-        //TODO
         async function fetchPetSet() {
-            const response = await fetch("/api/tree/test?convert=set");
+            const response = await fetch("/api/tree/test/set");
+            if (response.status !== 200) {
+                return null;
+            }
+            const data = await response.json();
+            return data;
         }
-        fetchPetSet();
+        fetchPetSet().then(data => {
+            if (data) {
+                data.forEach(node => petMap.set(node.name, node));
+            }
+        });
+
+        return () => petMap = new Map();
     }, [treeRoot]);
 
     return (

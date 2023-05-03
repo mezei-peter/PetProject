@@ -2,6 +2,7 @@ package hu.mpb.backendpetproject.service.pet;
 
 import hu.mpb.backendpetproject.model.PetNode;
 
+import java.util.Set;
 import java.util.UUID;
 
 public interface PetService {
@@ -9,5 +10,5 @@ public interface PetService {
 
     PetNode insertPet(UUID randomUUID, String petName, int petWeight);
 
-    PetNode getTreeAsSet();
+    Set<PetNode> getTreeAsSet();
 }

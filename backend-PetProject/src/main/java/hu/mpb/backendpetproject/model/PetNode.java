@@ -39,4 +39,12 @@ public class PetNode {
     public String getName() {
         return name;
     }
+
+    public boolean hasLeftChild() {
+        return leftChild != null;
+    }
+
+    public boolean hasRightChild() {
+        return rightChild != null;
+    }
 }
