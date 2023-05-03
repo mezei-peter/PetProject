@@ -1,8 +1,10 @@
 package hu.mpb.backendpetproject.service.binarytree;
 
+import hu.mpb.backendpetproject.model.PetBinaryTree;
 import hu.mpb.backendpetproject.model.PetNode;
 
 import java.util.Set;
+import java.util.UUID;
 
 public class PetBinarySearchTreeService implements PetBinaryTreeService {
     @Override
@@ -16,7 +18,12 @@ public class PetBinarySearchTreeService implements PetBinaryTreeService {
     }
 
     @Override
-    public void deleteNode(PetNode petNode) {
+    public void deleteNode(PetNode petNode, PetBinaryTree tree) {
 
+    }
+
+    @Override
+    public PetNode findNodeInSubTree(PetNode root, UUID uuid) {
+        return null;
     }
 }

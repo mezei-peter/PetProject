@@ -39,29 +39,10 @@ public class PetBinaryTree {
         if (root == null) {
             return null;
         }
-        return findNodeInSubTree(root, uuid);
-    }
-
-    private PetNode findNodeInSubTree(PetNode subTreeRoot, UUID uuid) {
-        if (subTreeRoot.hasUUID(uuid)) {
-            return subTreeRoot;
-        }
-        if (subTreeRoot.hasLeftChild()) {
-            PetNode leftResult = findNodeInSubTree(subTreeRoot.getLeftChild(), uuid);
-            if (leftResult != null) {
-                return leftResult;
-            }
-        }
-        if (subTreeRoot.hasRightChild()) {
-            PetNode rightResult = findNodeInSubTree(subTreeRoot.getRightChild(), uuid);
-            if (rightResult != null) {
-                return rightResult;
-            }
-        }
-        return null;
+        return petBinaryTreeService.findNodeInSubTree(root, uuid);
     }
 
     public void deleteNode(PetNode petNode) {
-        petBinaryTreeService.deleteNode(petNode);
+        petBinaryTreeService.deleteNode(petNode, this);
     }
 }

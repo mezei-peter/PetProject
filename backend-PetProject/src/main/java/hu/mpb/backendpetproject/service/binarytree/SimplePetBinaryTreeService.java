@@ -1,11 +1,9 @@
 package hu.mpb.backendpetproject.service.binarytree;
 
+import hu.mpb.backendpetproject.model.PetBinaryTree;
 import hu.mpb.backendpetproject.model.PetNode;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 public class SimplePetBinaryTreeService implements PetBinaryTreeService {
     @Override
@@ -21,8 +19,28 @@ public class SimplePetBinaryTreeService implements PetBinaryTreeService {
     }
 
     @Override
-    public void deleteNode(PetNode petNode) {
+    public void deleteNode(PetNode petNode, PetBinaryTree tree) {
         //TODO
+    }
+
+    @Override
+    public PetNode findNodeInSubTree(PetNode subTreeRoot, UUID uuid) {
+        if (subTreeRoot.hasUUID(uuid)) {
+            return subTreeRoot;
+        }
+        if (subTreeRoot.hasLeftChild()) {
+            PetNode leftResult = findNodeInSubTree(subTreeRoot.getLeftChild(), uuid);
+            if (leftResult != null) {
+                return leftResult;
+            }
+        }
+        if (subTreeRoot.hasRightChild()) {
+            PetNode rightResult = findNodeInSubTree(subTreeRoot.getRightChild(), uuid);
+            if (rightResult != null) {
+                return rightResult;
+            }
+        }
+        return null;
     }
 
     private void putSubTreeIntoSetDfs(PetNode subRoot, Set<PetNode> set) {
