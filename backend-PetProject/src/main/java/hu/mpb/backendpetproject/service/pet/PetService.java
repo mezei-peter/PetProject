@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.UUID;
 
 public interface PetService {
-    public PetNode getPetNode();
+    public PetNode getTreeRoot();
 
     PetNode insertPet(UUID randomUUID, String petName, int petWeight);
 

@@ -11,7 +11,7 @@ public class DevPetService implements PetService {
     private final PetBinaryTree petBinaryTree = new PetBinaryTree(new SimplePetBinaryTreeService());
 
     @Override
-    public PetNode getPetNode() {
+    public PetNode getTreeRoot() {
         if (petBinaryTree.getRoot() == null) {
             return null;
         }

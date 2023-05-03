@@ -21,7 +21,7 @@ public class TreeController {
 
     @GetMapping(value = "/test", produces = "application/json")
     private ResponseEntity<PetNode> getTestTree() {
-        PetNode result = petService.getPetNode();
+        PetNode result = petService.getTreeRoot();
         if (result == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
