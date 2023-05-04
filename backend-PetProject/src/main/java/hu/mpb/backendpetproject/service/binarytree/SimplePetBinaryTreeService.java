@@ -34,31 +34,32 @@ public class SimplePetBinaryTreeService implements PetBinaryTreeService {
                     swapRootNodeWithChild(petNode, ChildDirection.RIGHT, tree);
                 }
             }
-            Pair<PetNode, ChildDirection> parentData = findParentData(petNode, tree);
-            PetNode parent = parentData.getFirst();
-            ChildDirection direction = parentData.getSecond();
-            while (petNode.hasAnyChild()) {
-                if (petNode.hasLeftChild()) {
-                    PetNode swappedChild = petNode.getLeftChild();
-                    ChildDirection swappedDirection = ChildDirection.LEFT;
-                    swapNodeWithChild(ChildDirection.LEFT, petNode, parent, direction);
-                    parent = swappedChild;
-                    direction = swappedDirection;
-                } else {
-                    PetNode swappedChild = petNode.getRightChild();
-                    ChildDirection swappedDirection = ChildDirection.RIGHT;
-                    swapNodeWithChild(ChildDirection.RIGHT, petNode, parent, direction);
-                    parent = swappedChild;
-                    direction = swappedDirection;
-                }
-            }
-            Pair<PetNode, ChildDirection> newParentData = findParentData(petNode, tree);
-            PetNode newParent = newParentData.getFirst();
-            ChildDirection newDirection = newParentData.getSecond();
-            newParent.removeChild(newDirection);
+            deleteNonRootNode(petNode, tree);
         } catch (Throwable e) {
             e.printStackTrace();
         }
+    }
+
+    private void deleteNonRootNode(PetNode petNode, PetBinaryTree tree) throws Exception {
+        Pair<PetNode, ChildDirection> parentData = findParentData(petNode, tree);
+        PetNode parent = parentData.getFirst();
+        ChildDirection direction = parentData.getSecond();
+        while (petNode.hasAnyChild()) {
+            if (petNode.hasLeftChild()) {
+                PetNode swappedChild = petNode.getLeftChild();
+                ChildDirection swappedDirection = ChildDirection.LEFT;
+                swapNodeWithChild(ChildDirection.LEFT, petNode, parent, direction);
+                parent = swappedChild;
+                direction = swappedDirection;
+            } else {
+                PetNode swappedChild = petNode.getRightChild();
+                ChildDirection swappedDirection = ChildDirection.RIGHT;
+                swapNodeWithChild(ChildDirection.RIGHT, petNode, parent, direction);
+                parent = swappedChild;
+                direction = swappedDirection;
+            }
+        }
+        parent.removeChild(direction);
     }
 
     private void swapRootNodeWithChild(PetNode originalRoot, ChildDirection direction, PetBinaryTree tree)
