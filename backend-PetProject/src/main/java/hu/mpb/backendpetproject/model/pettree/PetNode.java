@@ -1,5 +1,7 @@
 package hu.mpb.backendpetproject.model.pettree;
 
+import hu.mpb.backendpetproject.model.generic.Pair;
+
 import java.util.UUID;
 
 public class PetNode {
@@ -87,5 +89,14 @@ public class PetNode {
             case LEFT -> leftChild = null;
             case RIGHT -> rightChild = null;
         }
+    }
+
+    public Pair<PetNode, PetNode> getLeftAndRightChild() {
+        return new Pair<>(leftChild, rightChild);
+    }
+
+    public void setLeftAndRightChild(PetNode left, PetNode right) {
+        leftChild = left;
+        rightChild = right;
     }
 }

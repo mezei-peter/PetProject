@@ -22,20 +22,54 @@ public class SimplePetBinaryTreeService implements PetBinaryTreeService {
 
     @Override
     public void deleteNode(PetNode petNode, PetBinaryTree tree) {
+        //TODO: root, but has children!
         if (petNode == tree.getRoot() && !petNode.hasAnyChild()) {
             tree.emptyRoot();
             return;
         }
         try {
-            Pair<PetNode, ChildDirection> parentData = findParentData(petNode, tree);
-            PetNode parent = parentData.getFirst();
-            ChildDirection direction = parentData.getSecond();
-            if (!petNode.hasAnyChild()) {
-                parent.removeChild(direction);
+            while (petNode.hasAnyChild()) {
+                Pair<PetNode, ChildDirection> parentData = findParentData(petNode, tree);
+                PetNode parent = parentData.getFirst();
+                ChildDirection direction = parentData.getSecond();
+                if (petNode.hasLeftChild()) {
+                    swapNodeWithChild(ChildDirection.LEFT, petNode, parent, direction);
+                } else {
+                    swapNodeWithChild(ChildDirection.RIGHT, petNode, parent, direction);
+                }
             }
+            Pair<PetNode, ChildDirection> newParentData = findParentData(petNode, tree);
+            PetNode newParent = newParentData.getFirst();
+            ChildDirection newDirection = newParentData.getSecond();
+            newParent.removeChild(newDirection);
         } catch (Throwable e) {
             e.printStackTrace();
         }
+    }
+
+    private void swapNodeWithChild(ChildDirection childDirection, PetNode petNode, PetNode parent,
+                                   ChildDirection directionFromParent) {
+        PetNode child = switch (childDirection) {
+            case LEFT -> petNode.getLeftChild();
+            case RIGHT -> petNode.getRightChild();
+        };
+        Pair<PetNode, PetNode> childChildren = child.getLeftAndRightChild();
+
+        switch (directionFromParent) {
+            case LEFT -> parent.setLeftChild(child);
+            case RIGHT -> parent.setRightChild(child);
+        }
+        switch (childDirection) {
+            case LEFT -> {
+                child.setLeftChild(petNode);
+                child.setRightChild(petNode.getRightChild());
+            }
+            case RIGHT -> {
+                child.setLeftChild(petNode.getLeftChild());
+                child.setRightChild(petNode);
+            }
+        }
+        petNode.setLeftAndRightChild(childChildren.getFirst(), childChildren.getSecond());
     }
 
     private Pair<PetNode, ChildDirection> findParentData(PetNode petNode, PetBinaryTree tree) throws Exception {
