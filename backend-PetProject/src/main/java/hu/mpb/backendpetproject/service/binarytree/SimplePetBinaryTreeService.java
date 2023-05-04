@@ -28,14 +28,22 @@ public class SimplePetBinaryTreeService implements PetBinaryTreeService {
             return;
         }
         try {
+            Pair<PetNode, ChildDirection> parentData = findParentData(petNode, tree);
+            PetNode parent = parentData.getFirst();
+            ChildDirection direction = parentData.getSecond();
             while (petNode.hasAnyChild()) {
-                Pair<PetNode, ChildDirection> parentData = findParentData(petNode, tree);
-                PetNode parent = parentData.getFirst();
-                ChildDirection direction = parentData.getSecond();
                 if (petNode.hasLeftChild()) {
+                    PetNode swappedChild = petNode.getLeftChild();
+                    ChildDirection swappedDirection = ChildDirection.LEFT;
                     swapNodeWithChild(ChildDirection.LEFT, petNode, parent, direction);
+                    parent = swappedChild;
+                    direction = swappedDirection;
                 } else {
+                    PetNode swappedChild = petNode.getRightChild();
+                    ChildDirection swappedDirection = ChildDirection.RIGHT;
                     swapNodeWithChild(ChildDirection.RIGHT, petNode, parent, direction);
+                    parent = swappedChild;
+                    direction = swappedDirection;
                 }
             }
             Pair<PetNode, ChildDirection> newParentData = findParentData(petNode, tree);
