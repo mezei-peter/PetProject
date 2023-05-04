@@ -28,6 +28,10 @@ public class PetBinaryTree {
         return root;
     }
 
+    public void setRoot(PetNode root) {
+        this.root = root;
+    }
+
     public Set<PetNode> asSet() {
         if (root == null) {
             return null;

@@ -22,12 +22,18 @@ public class SimplePetBinaryTreeService implements PetBinaryTreeService {
 
     @Override
     public void deleteNode(PetNode petNode, PetBinaryTree tree) {
-        //TODO: root, but has children!
-        if (petNode == tree.getRoot() && !petNode.hasAnyChild()) {
-            tree.emptyRoot();
-            return;
-        }
         try {
+            if (petNode == tree.getRoot()) {
+                if (!petNode.hasAnyChild()) {
+                    tree.emptyRoot();
+                    return;
+                }
+                if (petNode.hasLeftChild()) {
+                    swapRootNodeWithChild(petNode, ChildDirection.LEFT, tree);
+                } else {
+                    swapRootNodeWithChild(petNode, ChildDirection.RIGHT, tree);
+                }
+            }
             Pair<PetNode, ChildDirection> parentData = findParentData(petNode, tree);
             PetNode parent = parentData.getFirst();
             ChildDirection direction = parentData.getSecond();
@@ -53,6 +59,30 @@ public class SimplePetBinaryTreeService implements PetBinaryTreeService {
         } catch (Throwable e) {
             e.printStackTrace();
         }
+    }
+
+    private void swapRootNodeWithChild(PetNode originalRoot, ChildDirection direction, PetBinaryTree tree)
+            throws Exception {
+        if (tree.getRoot() != originalRoot) {
+            throw new Exception("Passed in node is NOT the root of the passed in tree.");
+        }
+        PetNode child = switch (direction) {
+            case LEFT -> originalRoot.getLeftChild();
+            case RIGHT -> originalRoot.getRightChild();
+        };
+        Pair<PetNode, PetNode> childChildren = child.getLeftAndRightChild();
+        tree.setRoot(child);
+        switch (direction) {
+            case LEFT -> {
+                child.setLeftChild(originalRoot);
+                child.setRightChild(originalRoot.getRightChild());
+            }
+            case RIGHT -> {
+                child.setLeftChild(originalRoot.getLeftChild());
+                child.setRightChild(originalRoot);
+            }
+        }
+        originalRoot.setLeftAndRightChild(childChildren.getFirst(), childChildren.getSecond());
     }
 
     private void swapNodeWithChild(ChildDirection childDirection, PetNode petNode, PetNode parent,
