@@ -22,9 +22,17 @@ public class SimplePetBinaryTreeService implements PetBinaryTreeService {
 
     @Override
     public void deleteNode(PetNode petNode, PetBinaryTree tree) {
-        Pair<PetNode, ChildDirection> parentData;
+        if (petNode == tree.getRoot() && !petNode.hasAnyChild()) {
+            tree.emptyRoot();
+            return;
+        }
         try {
-            parentData = findParentData(petNode, tree);
+            Pair<PetNode, ChildDirection> parentData = findParentData(petNode, tree);
+            PetNode parent = parentData.getFirst();
+            ChildDirection direction = parentData.getSecond();
+            if (!petNode.hasAnyChild()) {
+                parent.removeChild(direction);
+            }
         } catch (Throwable e) {
             e.printStackTrace();
         }

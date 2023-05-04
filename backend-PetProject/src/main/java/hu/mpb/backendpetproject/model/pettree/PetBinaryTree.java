@@ -45,4 +45,8 @@ public class PetBinaryTree {
     public void deleteNode(PetNode petNode) {
         petBinaryTreeService.deleteNode(petNode, this);
     }
+
+    public void emptyRoot() {
+        root = null;
+    }
 }

@@ -77,4 +77,15 @@ public class PetNode {
     public void setWeight(int weight) {
         this.weight = weight;
     }
+
+    public boolean hasAnyChild() {
+        return leftChild != null || rightChild != null;
+    }
+
+    public void removeChild(ChildDirection direction) {
+        switch (direction) {
+            case LEFT -> leftChild = null;
+            case RIGHT -> rightChild = null;
+        }
+    }
 }
