@@ -1,6 +1,6 @@
 package hu.mpb.backendpetproject.service.binarytree;
 
-import hu.mpb.backendpetproject.model.PetNode;
+import hu.mpb.backendpetproject.model.pettree.PetNode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
