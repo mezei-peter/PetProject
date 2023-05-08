@@ -1,4 +1,4 @@
-# PetPro# PetProject
+# PetProject
 
 ## Intro
 My personal fullstack project with React.js and Java Spring. Users can organize their
