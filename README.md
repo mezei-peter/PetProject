@@ -21,7 +21,7 @@ java -jar target/backend-PetProject-0.0.1-SNAPSHOT.jar
 ```
 
 #### Early build screenshot
-![Screenshot of a pet tree editing page from an early Pet Project version.](/screenshots/pet-project-early.png)
+![Screenshot of a pet tree editing page from an early Pet Project version.](https://i.imgur.com/LyvjGQa.png)
 
 ## Used technologies
 - Java
@@ -38,6 +38,7 @@ The frontend and the backend communicate with each other through HTTP requests.
 - User can remove pet from the tree.
   - *The algorithm currenty works like this: If the requested node is a leaf node, it gets removed. Otherwise, the node is swapped with its left child (if no left child present, then right child) until the requested node becomes a leaf node.*
 - User can drag and zoom into the tree rendering window.
+- Species of pet is based on its weight (e.g. 4kg - cat, 180kg - pig, 150.000kg - blue whale).
 - Responsive frontend.
 
 #### Planned features
@@ -47,5 +48,3 @@ The frontend and the backend communicate with each other through HTTP requests.
 - Login system.
 - Ability to save a pet tree to the user's pet tree library.
 - Browsing other users' pet trees.
-- Image of pet changes based on its weight (e.g. 4kg - cat, 80kg - pig, 100.000kg+ - whale).
-
