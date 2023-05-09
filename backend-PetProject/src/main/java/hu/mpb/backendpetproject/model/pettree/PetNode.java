@@ -8,6 +8,7 @@ public class PetNode {
     private final UUID uuid = UUID.randomUUID();
     private final String name;
     private final int weight;
+    private final PetSpecies species;
     private PetNode leftChild;
     private PetNode rightChild;
 
@@ -16,6 +17,16 @@ public class PetNode {
         this.weight = weight;
         this.leftChild = null;
         this.rightChild = null;
+        this.species = determineSpecies(weight);
+    }
+
+    private PetSpecies determineSpecies(int weight) {
+        for (PetSpecies species : PetSpecies.values()) {
+            if (species.fallsInWeightBounds(weight)) {
+                return species;
+            }
+        }
+        return null;
     }
 
     public void setLeftChild(PetNode leftChild) {
@@ -90,5 +101,9 @@ public class PetNode {
     public void setLeftAndRightChild(PetNode left, PetNode right) {
         leftChild = left;
         rightChild = right;
+    }
+
+    public PetSpecies getSpecies() {
+        return species;
     }
 }
