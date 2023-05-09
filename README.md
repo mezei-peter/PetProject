@@ -30,6 +30,8 @@ java -jar target/backend-PetProject-0.0.1-SNAPSHOT.jar
   - React.js
 The frontend and the backend communicate with each other through HTTP requests.
 
+*Pet portraits were generated using Image Creator by Microsoft Bing.*
+
 ## Features 
 - User has pets.
 - The name and weight of pets is stored in a binary tree structure, rendered on the frontend.
