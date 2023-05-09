@@ -42,7 +42,7 @@ function AddForm({setTreeRoot}) {
             handleSubmit();
         }}>
             <h2>Add pet</h2>
-            <input type="text" name="ob-form-name" id="ob-form-name" placeholder="name" required value={name}
+            <input type="text" name="ob-form-name" id="ob-form-name" placeholder="name" maxLength="10" required value={name}
                    onChange={event => setName(event.target.value)}/>
             <input type="number" min="1" max="9999999" step="1" name="ob-form-weight" id="ob-form-weight"
                    placeholder="weight"
