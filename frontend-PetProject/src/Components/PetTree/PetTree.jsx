@@ -1,7 +1,53 @@
+import RabbitPortrait from '../../assets/petportraits/rabbit.png';
+import CatPortrait from '../../assets/petportraits/cat.png';
+import PugPortrait from '../../assets/petportraits/pug.png';
+import BeaglePortrait from '../../assets/petportraits/beagle.png';
+import HuskyPortrait from '../../assets/petportraits/husky.png';
+import GoldenRetrieverPortrait from '../../assets/petportraits/golden_retriever.png';
+import GermanShepherdPortrait from '../../assets/petportraits/german_shepherd.png';
+import GoatPortrait from '../../assets/petportraits/goat.png';
+import SheepPortrait from '../../assets/petportraits/sheep.png';
+import PigPortrait from '../../assets/petportraits/pig.png';
+import DonkeyPortrait from '../../assets/petportraits/donkey.png';
+import HorsePortrait from '../../assets/petportraits/horse.png';
+import CowPortrait from '../../assets/petportraits/cow.png';
+import HippopotamusPortrait from '../../assets/petportraits/hippopotamus.png';
+import RhinocerosPortrait from '../../assets/petportraits/rhinoceros.png';
+import ElephantPortrait from '../../assets/petportraits/elephant.png';
+import SpermWhalePortrait from '../../assets/petportraits/sperm_whale.png';
+import FinWhalePortrait from '../../assets/petportraits/fin_whale.png';
+import BlueWhalePortrait from '../../assets/petportraits/blue_whale.png';
+import GreatOldOnePortrait from '../../assets/petportraits/great_old_one.png';
+
 import './PetTree.css';
 
 import PetNode from './PetNode';
 import {useEffect, useRef, useState} from "react";
+
+const petPortraitMap = new Map();
+
+function fillPetPortraitMap() {
+    petPortraitMap.set("rabbit", RabbitPortrait);
+    petPortraitMap.set("cat", CatPortrait);
+    petPortraitMap.set("pug", PugPortrait);
+    petPortraitMap.set("beagle", BeaglePortrait);
+    petPortraitMap.set("husky", HuskyPortrait);
+    petPortraitMap.set("golden_retriever", GoldenRetrieverPortrait);
+    petPortraitMap.set("german_shepherd", GermanShepherdPortrait);
+    petPortraitMap.set("goat", GoatPortrait);
+    petPortraitMap.set("sheep", SheepPortrait);
+    petPortraitMap.set("pig", PigPortrait);
+    petPortraitMap.set("donkey", DonkeyPortrait);
+    petPortraitMap.set("horse", HorsePortrait);
+    petPortraitMap.set("cow", CowPortrait);
+    petPortraitMap.set("hippopotamus", HippopotamusPortrait);
+    petPortraitMap.set("rhinoceros", RhinocerosPortrait);
+    petPortraitMap.set("elephant", ElephantPortrait);
+    petPortraitMap.set("sperm_whale", SpermWhalePortrait);
+    petPortraitMap.set("fin_whale", FinWhalePortrait);
+    petPortraitMap.set("blue_whale", BlueWhalePortrait);
+    petPortraitMap.set("great_old_one", GreatOldOnePortrait);
+}
 
 function PetTree({root, setRoot, emptyRoot}) {
     const [wentWrong, setWentWrong] = useState(false);
@@ -60,6 +106,8 @@ function PetTree({root, setRoot, emptyRoot}) {
                 setLoading(false);
                 setWentWrong(true);
             });
+
+        fillPetPortraitMap();
     }, []);
 
     const handleWheel = event => {
@@ -124,7 +172,8 @@ function PetTree({root, setRoot, emptyRoot}) {
                      onMouseMove={event => handleMouseMove(event.clientX, event.clientY, topElement)}>
                     <ul>
                         <PetNode invisible={root.invisible} leftChild={root.leftChild} rightChild={root.rightChild}
-                                 name={root.name} weight={root.weight}/>
+                                 name={root.name} weight={root.weight} species={root.species}
+                                 portraits={petPortraitMap}/>
                     </ul>
                 </div>
             </div>

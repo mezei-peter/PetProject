@@ -1,4 +1,4 @@
-function PetNode({invisible, leftChild, rightChild, name, weight}) {
+function PetNode({invisible, leftChild, rightChild, name, weight, species, portraits}) {
     if (invisible) {
         return (
             <li>
@@ -10,7 +10,8 @@ function PetNode({invisible, leftChild, rightChild, name, weight}) {
     return (
         <li>
             <div className="pet-node">
-                <img src="https://cdn.pixabay.com/photo/2013/07/13/13/41/pig-161381_960_720.png" alt="animal portrait"/>
+                <img src={portraits.get(species.toLowerCase())}
+                     alt="animal portrait"/>
                 <p>{name}</p>
                 <p>{weight}kg</p>
             </div>
@@ -18,11 +19,13 @@ function PetNode({invisible, leftChild, rightChild, name, weight}) {
             <ul>
                 {leftChild ?
                     <PetNode invisible={false} leftChild={leftChild.leftChild} rightChild={leftChild.rightChild}
-                             name={leftChild.name} weight={leftChild.weight}/> :
+                             name={leftChild.name} weight={leftChild.weight} species={leftChild.species}
+                             portraits={portraits}/> :
                     <PetNode invisible={true}/>}
                 {rightChild ?
                     <PetNode invisible={false} leftChild={rightChild.leftChild} rightChild={rightChild.rightChild}
-                             name={rightChild.name} weight={rightChild.weight}/> :
+                             name={rightChild.name} weight={rightChild.weight} species={rightChild.species}
+                             portraits={portraits}/> :
                     <PetNode invisible={true}/>}
             </ul>
         </li>
