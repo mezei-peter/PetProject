@@ -13,7 +13,7 @@ function PetNode({invisible, leftChild, rightChild, name, weight, species, portr
                 <img src={portraits.get(species.toLowerCase())}
                      alt="animal portrait"/>
                 <p>{name}</p>
-                <p>{weight}kg</p>
+                <p>{Intl.NumberFormat("en-US").format(weight)}kg</p>
             </div>
 
             <ul>
